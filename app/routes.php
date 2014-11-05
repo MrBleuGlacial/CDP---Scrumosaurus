@@ -15,3 +15,12 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/projet', function(){
+    return View::make('projet');
+});
+
+Route::get('/backlog/{id}', function($id){
+    return 'Backlog '.$id;
+    //return View::make('backlog');
+});
