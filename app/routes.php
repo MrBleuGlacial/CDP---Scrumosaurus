@@ -17,7 +17,7 @@
 });*/
 Route::get('/', 'HomeController@showWelcome');
 
-Route::get('/project', 'ProjectController@showProject');
+Route::get('/projects', 'ProjectController@showProject');
 
 /*Route::get('/test', function()
 {

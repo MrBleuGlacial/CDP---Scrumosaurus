@@ -57,18 +57,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li><a href="#">Vue d'ensemble</a></li>
-            <li class="active"><a href="#">BackLog</a></li>
-            <li><a href="#">Tests</a></li>
-            <li><a href="#">Sprints</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Kanban</a></li>
-            <li><a href="">Diagramme Pert</a></li>
-            <li><a href="">Burndown Chart</a></li>
-            <li><a href="">Daily Scrum</a></li>
-          </ul>
+            @yield('sidebar')
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Bienvenue sur Scrumosaurus</h1>

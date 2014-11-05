@@ -16,15 +16,8 @@ class ProjectController extends BaseController {
     */
 
 
-    /**
-     * The layout that should be used for responses.
-     */
-    protected $layout = 'layouts.master';
-
-
     public function showProject()
     {
-        $this->layout->content = View::make('projet');
-        //return View::make('hello');
+        return View::make('projects/projects');
     }
 }
