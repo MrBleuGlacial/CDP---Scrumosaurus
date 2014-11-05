@@ -11,21 +11,24 @@
 |
 */
 
-Route::get('/', function()
+/*Route::get('/', function()
 {
 	return View::make('hello');
-});
+});*/
+Route::get('/', 'HomeController@showWelcome');
 
-Route::get('/test', function()
+Route::get('/project', 'ProjectController@showProject');
+
+/*Route::get('/test', function()
 {
     return View::make('hello');
 });
 
 Route::get('/projet', function(){
-    return View::make('projet');
+    return View::make('layouts.master');
 });
 
 Route::get('/backlog/{id}', function($id){
     return 'Backlog '.$id;
     //return View::make('backlog');
-});
+});*/

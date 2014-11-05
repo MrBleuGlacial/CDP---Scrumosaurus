@@ -15,9 +15,16 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
 
+    /**
+     * The layout that should be used for responses.
+     */
+    protected $layout = 'layouts.master';
+
+
+    public function showWelcome()
+    {
+        $this->layout->content = View::make('welcome');
+        //return View::make('hello');
+    }
 }
