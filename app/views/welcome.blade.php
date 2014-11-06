@@ -7,6 +7,13 @@
           </ul>
     @stop
 
+    @section('breadcrumb')
+        <ol class="breadcrumb">
+          <li class="active">Accueil</li>
+        </ol>
+    @stop
+
     @section('content')
-             <h1>Welcome</h1>
+             <h1 class="page-header">Welcome</h1>
+             <p> Bonjour !</p>
     @stop

@@ -19,6 +19,8 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/projects', 'ProjectController@showProject');
 
+Route::get('/register', 'UserController@showRegister');
+
 /*Route::get('/test', function()
 {
     return View::make('hello');
