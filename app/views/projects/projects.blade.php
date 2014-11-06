@@ -8,5 +8,6 @@
     @stop
 
     @section('content')
-             <h1>Projets</h1>
+          <h1>Projets</h1>
+          <a href="/projects/create" class="btn btn-sm btn-default glyphicon glyphicon-floppy-disk">  Enregistrer un Projet</a>
     @stop

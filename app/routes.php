@@ -19,6 +19,10 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/projects', 'ProjectController@showProject');
 
+Route::get('/projects/create', 'ProjectController@showCreateProject');
+
+Route::post('/projects/create/verify', 'ProjectController@verifyCreateProject');
+
 /*Route::get('/test', function()
 {
     return View::make('hello');

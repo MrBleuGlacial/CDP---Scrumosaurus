@@ -20,4 +20,14 @@ class ProjectController extends BaseController {
     {
         return View::make('projects/projects');
     }
+
+    public function showCreateProject()
+    {
+        return View::make('projects/createProjects');
+    }
+
+    public function verifyCreateProject()
+    {
+        return View::make('projects/controlerCreateProjet');
+    }
 }
