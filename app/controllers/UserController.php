@@ -7,4 +7,9 @@ class UserController extends BaseController {
     {
         return View::make('users/register');
     }
+
+    public function verifyRegistration(){
+
+        return View::make('users/verify');
+    }
 }

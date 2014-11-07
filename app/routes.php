@@ -11,26 +11,17 @@
 |
 */
 
-/*Route::get('/', function()
-{
-	return View::make('hello');
-});*/
+/* HOME */
 Route::get('/', 'HomeController@showWelcome');
 
+/* PROJECTS */
 Route::get('/projects', 'ProjectController@showProject');
 
+Route::get('/projects/create', 'ProjectController@showCreateProject');
+
+Route::post('/projects/create/verify', 'ProjectController@verifyCreateProject');
+
+/* USERS */
 Route::get('/register', 'UserController@showRegister');
 
-/*Route::get('/test', function()
-{
-    return View::make('hello');
-});
-
-Route::get('/projet', function(){
-    return View::make('layouts.master');
-});
-
-Route::get('/backlog/{id}', function($id){
-    return 'Backlog '.$id;
-    //return View::make('backlog');
-});*/
+Route::post('/register/verify', 'UserController@verifyRegistration');

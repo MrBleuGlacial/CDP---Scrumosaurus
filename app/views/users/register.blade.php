@@ -20,11 +20,11 @@
              <div class="container-fluid">
                <div class="row">
                  <div class="col-md-12">
-                 {{ Form::open(array('url' => '/register')) }}
+                 {{ Form::open(array('url' => '/register/verify')) }}
                     <!--<form role="form">-->
                       <div class="form-group">
                         <span class="glyphicon glyphicon-user"></span>  <label for="inputLogin">Identifiant</label>
-                        <input type="email" class="form-control" id="inputLogin" placeholder="Entrez votre identifiant">
+                        <input type="text" class="form-control" id="inputLogin" placeholder="Entrez votre identifiant">
                       </div>
                       <div class="form-group">
                         <span class="glyphicon glyphicon-envelope"></span>  <label for="inputEMail">E-Mail</label>
@@ -32,11 +32,11 @@
                       </div>
                       <div class="form-group">
                         <span class="glyphicon glyphicon-th-list"></span> <label for="inputName">Nom</label>
-                        <input type="email" class="form-control" id="inputName" placeholder="Entrez votre nom">
+                        <input type="text" class="form-control" id="inputName" placeholder="Entrez votre nom">
                       </div>
                       <div class="form-group">
                         <span class="glyphicon glyphicon-th-list"></span> <label for="inputFirstName">Prénom</label>
-                        <input type="email" class="form-control" id="inputFirstName" placeholder="Entrez votre prénom">
+                        <input type="text" class="form-control" id="inputFirstName" placeholder="Entrez votre prénom">
                       </div>
                       <div class="form-group">
                         <span class="glyphicon glyphicon-asterisk"></span> <label for="inputPassword">Mot de passe</label>
@@ -53,3 +53,18 @@
                </div>
              </div>
     @stop
+
+    <?php
+
+       // $user = new User;
+
+        //$user->USER_LOGIN = 'meycheni';
+        //$user->USER_PASSWORD= 'cdp';
+        //$user->USER_NAME = 'Maxime';
+        //$user->USER_SURNAME = 'Eychenié';
+        //$user->USER_EMAIL = 'meycheni@cdp.com';
+
+
+        //$user->save();
+
+    ?>
