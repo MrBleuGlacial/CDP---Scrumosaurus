@@ -25,3 +25,6 @@ Route::post('/projects/create/verify', 'ProjectController@verifyCreateProject');
 Route::get('/register', 'UserController@showRegister');
 
 Route::post('/register/verify', 'UserController@verifyRegistration');
+
+/* US */
+Route::resource('/userstory', 'UserStoryController');
