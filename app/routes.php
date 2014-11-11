@@ -15,11 +15,10 @@
 Route::get('/', 'HomeController@showWelcome');
 
 /* PROJECTS */
-Route::get('/projects', 'ProjectController@showProject');
-
-Route::get('/projects/create', 'ProjectController@showCreateProject');
-
-Route::post('/projects/create/verify', 'ProjectController@verifyCreateProject');
+/*Route::get('/project', 'ProjectController@showProject');*/
+/*Route::get('/project/create', 'ProjectController@showCreateProject');*/
+/*Route::post('/project/create/verify', 'ProjectController@verifyCreateProject');*/
+Route::resource('project', 'ProjectController');
 
 /* USERS */
 Route::get('/register', 'UserController@showRegister');
