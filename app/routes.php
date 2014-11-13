@@ -17,6 +17,9 @@ Route::get('/', array('as' => 'home','uses' => 'HomeController@showWelcome'));
 /* US */
 Route::resource('/userstory', 'UserStoryController');
 
+/* PROJECTS */
+Route::resource('project', 'ProjectController');
+
 /* USERS */
 Route::resource('users', 'UserController');
 
@@ -25,6 +28,5 @@ Route::get('login', 'LoginController@index');
 Route::post('login','LoginController@post');
 Route::get('logout', array('as' => 'logout', function () {
     Auth::logout();
-
     return Redirect::route('home')->with('flash_notice', 'You are successfully logged out.');
 }))->before('auth');
