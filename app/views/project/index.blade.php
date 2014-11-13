@@ -16,7 +16,9 @@
 
     @section('content')
         <h1 class="page-header">Projets</h1>
-        <a href="/project/create" class="btn btn-sm btn-default glyphicon glyphicon-floppy-disk">  Enregistrer un Projet</a>
+        <a href="/project/create" class="btn btn-sm btn-primary glyphicon glyphicon-floppy-disk"> Enregistrer un Projet</a>
+        <br/>
+        <br/>
 
         <table class="table table-striped table-bordered">
             <thead>
@@ -26,6 +28,7 @@
                     <td>Description</td>
                     <td>Début</td>
                     <td>Fin</td>
+                    <td>Actions</td>
                 </tr>
             </thead>
             <tbody>

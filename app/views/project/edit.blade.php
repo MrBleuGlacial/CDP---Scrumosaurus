@@ -2,21 +2,22 @@
 
 @section('sidebar')
     <ul class="nav nav-sidebar">
-        <li><a href="/">Accueil</a></li>
+        <li><a href="/home">Accueil</a></li>
         <li class="active"><a href="/project">Projets</a></li>
     </ul>
 @stop
 
+
 @section('breadcrumb')
     <ol class="breadcrumb">
-      <li><a href="/">Accueil</a></li>
-      <li class="active">Projet</li>
-      <li><a href="/userstory">User Story</a></li>
+      <li><a href="/home">Accueil</a></li>
+      <li><a href="/project">Projet</a></li>
+      <li class="active">Edition</li>
     </ol>
 @stop
 
 @section('content')
-    <h1>Modification de "{{ $project->name}}"</h1>
+    <h1 class="page-header">Modification de "{{ $project->name}}"</h1>
 
     {{ HTML::ul($errors->all()) }}
 
