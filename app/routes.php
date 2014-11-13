@@ -15,7 +15,8 @@
 Route::get('/', array('as' => 'home','uses' => 'HomeController@showWelcome'));
 
 /* US */
-Route::resource('userstory', 'UserStoryController');
+Route::resource('project.userstory', 'UserStoryController',
+    array('except' => array('index')));
 
 /* PROJECTS */
 Route::resource('project', 'ProjectController');

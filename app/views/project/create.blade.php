@@ -1,23 +1,14 @@
  @extends('layouts.master')
 
  @section('sidebar')
-          <ul class="nav nav-sidebar">
-            <li><a href="/home">Accueil</a></li>
-            <li class="active"><a href="/project">Projets</a></li>
-          </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li class="active"><a href="/project">Projets</a></li>
+    </ul>
  @stop
 
-
-@section('breadcrumb')
-    <ol class="breadcrumb">
-      <li><a href="/home">Accueil</a></li>
-      <li><a href="/project">Projet</a></li>
-      <li class="active">Création</li>
-    </ol>
-@stop
-
  @section('content')
-          <h1 class="page-header">Création de Projet</h1>
+          <h1>Création de Projet</h1>
     <!--
     <form action='/project/store' method="POST" name="formulaireProjet">
        Nom du projet : <input type="text" name="projectName" class="form-control"/> <br/> <br/>

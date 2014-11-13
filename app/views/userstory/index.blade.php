@@ -20,6 +20,10 @@
 <h1>Toutes les UserStories</h1>
 <a href="{{ URL::to('userstory/create') }}">ajouter !</a>
 
+<?php
+    //echo $projectId;
+?>
+
 <table class="table table-striped table-bordered">
  <thead>
      <tr>

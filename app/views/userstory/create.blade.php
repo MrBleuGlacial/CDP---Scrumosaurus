@@ -1,23 +1,17 @@
 @extends('layouts.master')
 
-@section('sidebar')
-      <ul class="nav nav-sidebar">
-        <li><a href="/">Accueil</a></li>
-        <li class="active"><a href="/register">S'inscrire</a></li>
-      </ul>
-@stop
-
 @section('breadcrumb')
     <ol class="breadcrumb">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/">Projet</a></li>
-      <li class="active">User Story</li>
+        <li><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
+        <li class="active">Ajout d'une UserStory</li>
     </ol>
 @stop
 
 @section('content')
+
     {{ HTML::ul($errors->all()) }}
-    {{ Form::open(array('url' => 'userstory')) }}
+    {{ Form::open(array('url' => 'project/'.$project->id.'/userstory')) }}
 
         <div class="form-group">
             {{ Form::label('name', 'Nom') }}
@@ -35,8 +29,8 @@
         </div>
 
         <div class="form-group">
-                    {{ Form::label('difficulty', 'Difficulté') }}
-                    {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
+            {{ Form::label('difficulty', 'Difficulté') }}
+            {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
         </div>
 
         {{ Form::submit('Enregistrer', array('class' => 'btn btn-primary')) }}
