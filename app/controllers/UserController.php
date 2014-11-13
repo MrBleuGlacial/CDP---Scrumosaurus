@@ -66,11 +66,16 @@ class UserController extends \BaseController {
             $user->password   = Hash::Make(Input::get('inputPassword'));
             $user->name       = Input::get('inputName');
             $user->lastname   = Input::get('inputLastName');
-            $user->save();
 
-            // redirect
-            Session::flash('message', 'Votre compte a bien été créé.');
-            return Redirect::to('/users');
+            if(sizeof(User::where('login','=',Input::get('inputLogin'))->get()) > 0){
+                return Redirect::to('users/create')->withErrors("Ce nom d'utilisateur existe deja");
+            } else {
+                $user->save();
+
+                // redirect
+                Session::flash('message', 'Votre compte a bien été créé.');
+                return Redirect::to('/users');
+            }
        }
 	}
 

@@ -24,7 +24,7 @@ Route::resource('project', 'ProjectController');
 Route::resource('users', 'UserController');
 
 /* Login */
-Route::get('login', 'LoginController@index');
+Route::get('login', 'LoginController@index')->before('guest');
 Route::post('login','LoginController@post');
 Route::get('logout', array('as' => 'logout', function () {
     Auth::logout();
