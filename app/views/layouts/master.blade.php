@@ -38,27 +38,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Scrumosaurus</a>
+              <a class="navbar-brand" href="/">Scrumosaurus</a>
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/register">S'inscrire</a></li>
-                <li class="dropdown" id="menuLogin">
-                   <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Se connecter</a>
-                   <div class="dropdown-menu" style="padding:17px; width: 300px;">
-                     <form class="form" id="formLogin">
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Identifiant</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Entrez votre login">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Mot de passe</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Entrez votre mot de passe">
-                          </div>
-                          <button type="submit" class="btn btn-primary">Se connecter</button>
-                     </form>
-                    </div>
-                 </li>
-            </ul>
+            @if (Auth::check())
+                @include('layouts/logged')
+            @else
+                @include('layouts/mini-login')
+            @endif
           </div>
         </nav>
 
@@ -69,8 +55,6 @@
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
               @yield('breadcrumb')
-
-              <!--<h1 class="page-header">Bienvenue sur Scrumosaurus</h1>-->
 
               @yield('content')
 

@@ -12,19 +12,19 @@
 */
 
 /* HOME */
-Route::get('/', 'HomeController@showWelcome');
-
-/* PROJECTS */
-Route::get('/projects', 'ProjectController@showProject');
-
-Route::get('/projects/create', 'ProjectController@showCreateProject');
-
-Route::post('/projects/create/verify', 'ProjectController@verifyCreateProject');
-
-/* USERS */
-Route::get('/register', 'UserController@showRegister');
-
-Route::post('/register/verify', 'UserController@verifyRegistration');
+Route::get('/', array('as' => 'home','uses' => 'HomeController@showWelcome'));
 
 /* US */
 Route::resource('/userstory', 'UserStoryController');
+
+/* USERS */
+Route::resource('users', 'UserController');
+
+/* Login */
+Route::get('login', 'LoginController@index');
+Route::post('login','LoginController@post');
+Route::get('logout', array('as' => 'logout', function () {
+    Auth::logout();
+
+    return Redirect::route('home')->with('flash_notice', 'You are successfully logged out.');
+}))->before('auth');

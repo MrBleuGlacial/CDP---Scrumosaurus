@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration {
             $table->dateTime('start');
             $table->dateTime('end');
             $table->boolean('in_progress');
+            $table->string('git');
             $table->timestamps();
 
         });
