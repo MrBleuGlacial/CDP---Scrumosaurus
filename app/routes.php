@@ -15,10 +15,10 @@
 Route::get('/', array('as' => 'home','uses' => 'HomeController@showWelcome'));
 
 /* US */
-Route::resource('/userstory', 'UserStoryController');
+Route::resource('userstory', 'UserStoryController');
 
 /* PROJECTS */
-Route::resource('project', 'ProjectController');
+Route::resource('project', 'ProjectController');Route::resource('project', 'ProjectController');
 
 /* USERS */
 Route::resource('users', 'UserController');
