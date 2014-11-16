@@ -2,18 +2,28 @@
 
 @section('sidebar')
       <ul class="nav nav-sidebar">
-
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+         <li><a href="{{ URL::to('project') }}">Projets</a></li>
       </ul>
+
+    <ul class="nav nav-sidebar">
+      <li class="active"><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
+      <li><a href="{{ URL::to('project') }}">Sprints</a></li>
+      <li><a href="{{ URL::to('project') }}">GitHub</a></li>
+    </ul>
 @stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li class="active">{{ $project->name }}</li>
     </ol>
 @stop
 
 @section('content')
+    <h1 class="page-header">Détail du projet {{$project->name;}}</h1>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-5 col-md-4 ">
@@ -24,7 +34,7 @@
                     <dd>{{ $project->description }}</dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt>Commencé il y a</dt>
+                    <dt>Commencé depuis</dt>
                     <dd>
                         <?php
                          // Set timezone

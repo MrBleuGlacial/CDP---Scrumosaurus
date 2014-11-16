@@ -52,21 +52,22 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li>Accueil</li>
+            @yield('sidebar')
+            <!--<ul class="nav nav-sidebar">-->
+                <!--<li>Accueil</li>
                 <li>Mes projets</li>
                 <ul>
-                    <li><a href="{{URL::to('project/create')}}">Nouveau projet</a></li>
+                    <li><a href="{{URL::to('project/create')}}">Nouveau projet</a></li>-->
                     <?php
-                        $projects = Project::getMyProjects();
+                      /*  $projects = Project::getMyProjects();
                         foreach($projects as $project){
                             echo "<li><a href=\"/project/".$project->id."\">".$project->name."</a></li>";
-                        }
+                        }*/
                     ?>
 
 
-                </ul>
-            </ul>
+                <!--</ul>-->
+           <!-- </ul> -->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           @yield('breadcrumb')

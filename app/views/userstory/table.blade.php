@@ -1,4 +1,6 @@
-<a href="{{ URL::to('project/'.$idProject.'/userstory/create') }}">+ ajouter une UserStory</a>
+<a class="btn btn-primary" href="{{ URL::to('project/'.$idProject.'/userstory/create') }}">+ ajouter une UserStory</a>
+<br/>
+<br/>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>

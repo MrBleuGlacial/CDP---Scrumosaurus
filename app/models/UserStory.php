@@ -22,7 +22,7 @@ class UserStory extends Eloquent {
     }
 
     public static function canEdit($idProject, $idUserStory){
-        if(Auth::check()) {
+        if(Auth::check()) { // Pas necessaire avec le blocage de route
             $userstory = UserStory::find($idUserStory);
             if(!empty($userstory) && $userstory->project_id == $idProject){
                 //TODO tester si workingOn

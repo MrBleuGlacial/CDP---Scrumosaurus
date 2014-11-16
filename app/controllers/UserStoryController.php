@@ -2,6 +2,24 @@
 
 class UserStoryController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $userstories = UserStory::all();
+
+        return View::make('userstory.index')
+            ->with('userstory', $userstories);
+    }
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

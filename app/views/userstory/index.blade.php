@@ -18,7 +18,7 @@
 @section('content')
 
 <h1>Toutes les UserStories</h1>
-<a href="{{ URL::to('userstory/create') }}">ajouter !</a>
+<a class="btn btn-primary" href="{{ URL::to('userstory/create') }}">ajouter !</a>
 
 <?php
     //echo $projectId;

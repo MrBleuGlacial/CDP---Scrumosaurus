@@ -1,28 +1,22 @@
  @extends('layouts.master')
 
+ @section('breadcrumb')
+     <ol class="breadcrumb">
+         <li><a href="home">Accueil</a></li>
+         <li><a href="/project">Projets</a></li>
+         <li class="active">Création</li>
+     </ol>
+ @stop
+
  @section('sidebar')
     <ul class="nav nav-sidebar">
-        <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li><a href="home">Accueil</a></li>
         <li class="active"><a href="/project">Projets</a></li>
     </ul>
  @stop
 
  @section('content')
-          <h1>Création de Projet</h1>
-    <!--
-    <form action='/project/store' method="POST" name="formulaireProjet">
-       Nom du projet : <input type="text" name="projectName" class="form-control"/> <br/> <br/>
-       Description du projet : <textarea name="projectDescription" class="form-control"></textarea> <br/> <br/>
-
-            echo'Date de début de projet :';
-            $timetmp = date('d-m-Y');
-            echo'<input type="text" name="projectBirthDay" value=" '.$timetmp.'" class="form-control"/> <br/>';
-            echo'Date de fin de projet :';
-            echo'<input type="text" name="projectEndDay" value=" '.$timetmp.'" class="form-control"/> <br/>';
-
-        <input type="submit" name="Valider" value="Valider">
-    </form>
-    -->
+          <h1 class="page-header">Création de Projet</h1>
 
     {{ Form::open(array('url' => 'project')) }}
 
@@ -46,7 +40,7 @@
             {{ Form::text('end', Input::old('projectEndDay'), array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Create the project', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Créer le projet !', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 

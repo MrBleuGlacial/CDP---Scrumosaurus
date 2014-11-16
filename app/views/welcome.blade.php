@@ -1,13 +1,20 @@
 @extends('layouts.master')
 
+@section('sidebar')
+      <ul class="nav nav-sidebar">
+            <li class="active"><a href="/">Accueil</a></li>
+            <li><a href="/project">Projets</a></li>
+      </ul>
+@stop
+
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></li>
+        <li class="active">Accueil</li>
     </ol>
 @stop
 
 @section('content')
-         <h1 class="page-header">Welcome</h1>
+         <h1 class="page-header">Bienvenue sur Scrumosaurus</h1>
          <p> Bonjour !</p>
-         <p> Si vous n'avez pas encore de projet créé en un dans la colonne de gauche ...</p>
+         <p> Si vous n'avez pas encore de projet créez en un dans la colonne de gauche ...</p>
 @stop
