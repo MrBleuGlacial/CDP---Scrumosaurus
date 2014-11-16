@@ -3,47 +3,49 @@
 class UserStoryController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-    {
-        $idproject = 0;
-        $userstories = UserStory::where('project_id', 'LIKE', $idproject)->get();
-
-        return View::make('userstory.index')->with('userstories', $userstories);
-    }
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($idProject)
 	{
-        return View::make('userstory.create');
+        if(Userstory::canCreateNewOne($idProject)){
+            $project = Project::find($idProject);
+            return View::make('userstory.create')
+                ->with('project', $project);
+        }
+        else{
+            return Redirect::to("/");
+        }
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($idProject)
 	{
-        // store
-        $userstory = new UserStory();
-        $userstory->name = Input::get('name');
-        $userstory->description = Input::get('description');
-        $userstory->priority = Input::get('priority');
-        $userstory->difficulty = Input::get('difficulty');
-        $userstory->save();
+        $rules = array(
+            'name'       => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
-        // redirect
-        Session::flash('message', 'UserStory créée avec succés!');
-        return Redirect::to('userstory');
+        if ($validator->fails()) {
+            return Redirect::to('project/'.$idProject.'/userstory/create')
+                ->withErrors($validator);
+        } else {
+            $userstory = new UserStory();
+            $userstory->name = Input::get('name');
+            $userstory->project_id = $idProject;
+            $userstory->description = Input::get('description');
+            $userstory->priority = Input::get('priority');
+            $userstory->difficulty = Input::get('difficulty');
+            $userstory->save();
+
+            Session::flash('message', 'UserStory créée avec succés!');
+            return Redirect::to('project/' . $idProject);
+        }
 	}
 
 	/**
@@ -52,10 +54,14 @@ class UserStoryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($idProject, $idUserStory)
 	{
-		//
-        echo $id;
+        $project = Project::find($idProject);
+        $userstory = UserStory::find($idUserStory);
+        return View::make('userstory.show')
+            ->with(Array(
+                'userstory'=> $userstory,
+                'project' => $project));
 	}
 
 	/**
@@ -64,11 +70,17 @@ class UserStoryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($idProject, $idUserStory)
 	{
-        $userstory = UserStory::find($id);
-        return View::make('userstory.edit')
-            ->with('userstory', $userstory);
+        if(UserStory::canEdit($idProject, $idUserStory)){
+            $userstory = UserStory::find($id);
+            return View::make('userstory.edit')
+                ->with('userstory', $userstory);
+        }
+        else{
+            return Redirect::to("/");
+        }
+
 	}
 
 	/**

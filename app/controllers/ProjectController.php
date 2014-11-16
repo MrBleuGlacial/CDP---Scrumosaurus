@@ -43,9 +43,7 @@ class ProjectController extends BaseController {
 
         Session::flash('message', 'Votre projet a été créé! Bon courage !');
         return Redirect::to('project');
-
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -55,14 +53,15 @@ class ProjectController extends BaseController {
 	 */
 	public function show($id)
 	{
-        // get the nerd
-        //$project = Project::find($id);
+        $userstories = UserStory::where('project_id', 'LIKE', $id)->get();
 
-        // show the view and pass the nerd to it
-        //return View::make('project.show')
-        //    ->with('project', $project);
+        $project = Project::find($id);
+        return View::make('project.show')
+            ->with(Array(
+                'project' => $project,
+                'idProject' => $id,
+                'userstories'=> $userstories));
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.

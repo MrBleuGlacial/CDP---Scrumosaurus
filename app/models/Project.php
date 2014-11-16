@@ -9,5 +9,15 @@
 
 class Project extends Eloquent
 {
+    public static function getMyProjects(){
+        return Project::where('id', 'NOT LIKE', -1)->get();
+    }
 
+    function canAccess(){
+        if(Auth::check()) {
+
+        }
+        else
+            return false;
+    }
 }
