@@ -24,6 +24,9 @@ Route::resource('project', 'ProjectController');
 /* USERS */
 Route::resource('users', 'UserController');
 
+/* TASKS */
+Route::resource('task','TaskController');
+
 /* Login */
 Route::get('login', 'LoginController@index');
 Route::post('login','LoginController@post');

@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-    <h1 class="page-header">Modification de "{{ $project->name}}"</h1>
+    <h1 class="page-header">Modification de {{ $project->name}}</h1>
 
     {{ HTML::ul($errors->all()) }}
 

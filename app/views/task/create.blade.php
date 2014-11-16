@@ -3,12 +3,12 @@
  @section('sidebar')
     <ul class="nav nav-sidebar">
         <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-        <li class="active"><a href="/project">Projets</a></li>
+        <li class="active"><a href="/task">Tâches</a></li>
     </ul>
  @stop
 
  @section('content')
-          <h1>Création de Projet</h1>
+          <h1>Création de Tâches</h1>
     <!--
     <form action='/project/store' method="POST" name="formulaireProjet">
        Nom du projet : <input type="text" name="projectName" class="form-control"/> <br/> <br/>
@@ -24,12 +24,7 @@
     </form>
     -->
 
-    {{ Form::open(array('url' => 'project')) }}
-
-    <div class="form-group">
-            {{ Form::label('name', 'Nom du projet') }}
-            {{ Form::text('name', Input::old('projectName'), array('class' => 'form-control')) }}
-    </div>
+    {{ Form::open(array('url' => 'task')) }}
 
     <div class="form-group">
             {{ Form::label('description', 'Description') }}
@@ -37,16 +32,16 @@
     </div>
 
     <div class="form-group">
-            {{ Form::label('start', 'Date de début') }}
-            {{ Form::text('start', Input::old('projectBirthDay'), array('class' => 'form-control')) }}
+            {{ Form::label('difficulty', 'Difficulté') }}
+            {{ Form::text('difficulty', Input::old('difficulty'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">
-            {{ Form::label('end', 'Date de fin') }}
-            {{ Form::text('end', Input::old('projectEndDay'), array('class' => 'form-control')) }}
+            {{ Form::label('done', 'Terminée (0 ou 1)') }}
+            {{ Form::text('done', Input::old('done'), array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Créer le projet', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Créer la tâche', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 
