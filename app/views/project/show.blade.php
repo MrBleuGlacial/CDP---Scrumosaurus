@@ -10,7 +10,7 @@
       <li class="active"><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
       <li><a href="{{ URL::to('project') }}">Sprints</a></li>
-      <li><a href="{{ URL::to('project') }}">GitHub</a></li>
+      <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
 @stop
 
@@ -120,12 +120,4 @@
             </div>
         </div>
     </div>
-
-    <p>
-        <h1 class="page-header">Backlog</h1>
-        @include('userstory.table', array(
-            'userstories'=> $userstories,
-            'idProject' => $idProject))
-    </p>
-
 @stop

@@ -23,6 +23,9 @@ Route::resource('project.userstory', 'UserStoryController');
 /* USERS */
 Route::resource('users', 'UserController');
 
+/* TASKS */
+Route::resource('task','TaskController');
+
 /* Login */
 Route::get('login', 'LoginController@index')->before('guest');
 Route::post('login','LoginController@post');

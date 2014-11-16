@@ -1,24 +1,34 @@
 @extends('layouts.master')
 
 @section('sidebar')
+      <ul class="nav nav-sidebar">
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+         <li><a href="{{ URL::to('project') }}">Projets</a></li>
+      </ul>
+
     <ul class="nav nav-sidebar">
-        <li><a href="/">Accueil</a></li>
-        <li class="active"><a href="/register">S'inscrire</a></li>
+      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
+      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
+      <li><a href="{{ URL::to('project') }}">Sprints</a></li>
+      <li><a href="{{ URL::to('project') }}">GitHub</a></li>
     </ul>
 @stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/">Projet</a></li>
-        <li class="active">User Story</li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li><a href="{{ URL::to('project') }}">Projets</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
+        <li class="active">Backlog</li>
     </ol>
 @stop
 
 @section('content')
 
-<h1>Toutes les UserStories</h1>
-<a class="btn btn-primary" href="{{ URL::to('userstory/create') }}">ajouter !</a>
+<h1 class="page-header">Backlog</h1>
+<a class="btn btn-primary" href="{{  URL::to('project/'.$project->id.'/userstory/create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une User Story</a>
+<br/>
+<br/>
 
 <?php
     //echo $projectId;
@@ -31,7 +41,7 @@
          <td>Description</td>
          <td>Priorité</td>
          <td>Difficulté</td>
-         <td>Action</td>
+         <td style="width:180px">Action</td>
      </tr>
  </thead>
  <tbody>
@@ -41,18 +51,16 @@
          <td>{{ $value->description }}</td>
          <td>{{ $value->priority }}</td>
          <td>{{ $value->difficulty }}</td>
-         <td>
-            <a href="{{ URL::to('userstory/'.$value->id . '/edit') }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> <span class="sr-only">Editer</span></a>
-            {{ Form::open(array('url' => 'userstory/' . $value->id, 'class' => 'pull-right')) }}
+         <td style="width:180px">
+            <a href="{{ URL::to('project/'.$project->id.'/userstory/'.$value->id . '/edit') }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier</a>
+            {{ Form::open(array('url' => 'project/'.$project->id.'/userstory/' . $value->id, 'class' => 'pull-right')) }}
                 {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Supprimer', array('class' => 'btn btn-default')) }}
+                {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
             {{ Form::close() }}
          </td>
      </tr>
  @endforeach
  </tbody>
 </table>
-
-@include('userstory.table', array('idproject'=> 0))
 
 @stop

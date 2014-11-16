@@ -16,8 +16,10 @@
 @stop
 
 @section('content')
+    <h1 class="page-header">Edition d'une User Story</h1>
+
     {{ HTML::ul($errors->all()) }}
-    {{ Form::model($userstory, array('route' => array('userstory.update', $userstory->id), 'method' => 'PUT')) }}
+    {{ Form::model($userstory, array('route' => array('project/'.$project->id.'/userstory/'.$userstory->id, $userstory->id), 'method' => 'PUT')) }}
         <div class="form-group">
             {{ Form::label('name', 'Nom') }}
             {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
@@ -34,8 +36,8 @@
         </div>
 
         <div class="form-group">
-                    {{ Form::label('difficulty', 'Difficulté') }}
-                    {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
+            {{ Form::label('difficulty', 'Difficulté') }}
+            {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
         </div>
 
         {{ Form::submit('Enregistrer', array('class' => 'btn btn-primary')) }}

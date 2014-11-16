@@ -1,14 +1,32 @@
 @extends('layouts.master')
 
+@section('sidebar')
+      <ul class="nav nav-sidebar">
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+         <li><a href="{{ URL::to('project') }}">Projets</a></li>
+      </ul>
+
+    <ul class="nav nav-sidebar">
+      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
+      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
+      <li><a href="{{ URL::to('project') }}">Sprints</a></li>
+      <li><a href="{{ URL::to('project') }}">GitHub</a></li>
+    </ul>
+@stop
+
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-        <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
-        <li class="active">Ajout d'une UserStory</li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li><a href="{{ URL::to('project') }}">Projets</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
+        <li class="active">Création d'une User Story</li>
     </ol>
 @stop
 
 @section('content')
+
+    <h1 class="page-header">Création d'une User Story</h1>
 
     {{ HTML::ul($errors->all()) }}
     {{ Form::open(array('url' => 'project/'.$project->id.'/userstory')) }}

@@ -40,6 +40,11 @@
             {{ Form::text('end', Input::old('projectEndDay'), array('class' => 'form-control')) }}
     </div>
 
+    <div class="form-group">
+            {{ Form::label('git', 'Lien du GitHub') }}
+            {{ Form::text('git', Input::old('projectGit'), array('class' => 'form-control')) }}
+    </div>
+
     {{ Form::submit('Créer le projet !', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

@@ -14,7 +14,8 @@ class ProjectController extends BaseController {
 	 */
 	public function index()
 	{
-        $projects = Project::all();
+        $user = User::find(Auth::user()->id);
+        $projects = $user->projects;
 
         return View::make('project.index')
             ->with('project', $projects);
@@ -39,12 +40,20 @@ class ProjectController extends BaseController {
 	 */
 	public function store()
 	{
+
         $project = new Project;
         $project->name = Input::get('name');
         $project->description = Input::get('description');
         $project->start = Input::get('start');
         $project->end = Input::get('end');
+        $project->git = Input::get('git');
         $project->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->projects()->attach($project->id);
+        DB::table('workingon')
+            ->where(array('project_id' => $project->id, 'user_id' => Auth::user()->id))
+            ->update(array('position_id' => 1));
 
         Session::flash('message', 'Votre projet a été créé! Bon courage !');
         return Redirect::to('project');
@@ -98,6 +107,7 @@ class ProjectController extends BaseController {
         $project->description = Input::get('description');
         $project->start = Input::get('start');
         $project->end = Input::get('end');
+        $project->git = Input::get('git');
         $project->save();
 
         Session::flash('message', 'Votre projet a été mis à jour !');
@@ -115,6 +125,8 @@ class ProjectController extends BaseController {
 	{
         // delete
         $project = Project::find($id);
+        $user = User::find(Auth::user()->id);
+        $user->projects()->detach($project->id);
         $project->delete();
 
         // redirect

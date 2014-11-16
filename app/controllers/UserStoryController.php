@@ -12,12 +12,13 @@ class UserStoryController extends \BaseController {
      *
      * @return Response
      */
-    public function index()
+    public function index($projectId)
     {
         $userstories = UserStory::all();
+        $project = Project::find($projectId);
 
         return View::make('userstory.index')
-            ->with('userstory', $userstories);
+            ->with(array('userstories' => $userstories, 'project' => $project));
     }
 
 	/**
@@ -27,7 +28,7 @@ class UserStoryController extends \BaseController {
 	 */
 	public function create($idProject)
 	{
-        if(Userstory::canCreateNewOne($idProject)){
+        if(UserStory::canCreateNewOne($idProject)){
             $project = Project::find($idProject);
             return View::make('userstory.create')
                 ->with('project', $project);
@@ -91,9 +92,10 @@ class UserStoryController extends \BaseController {
 	public function edit($idProject, $idUserStory)
 	{
         if(UserStory::canEdit($idProject, $idUserStory)){
-            $userstory = UserStory::find($id);
+            $project = Project::find($idProject);
+            $userstory = UserStory::find($idUserStory);
             return View::make('userstory.edit')
-                ->with('userstory', $userstory);
+                ->with(array('userstory' => $userstory, 'project' => $project ));
         }
         else{
             return Redirect::to("/");

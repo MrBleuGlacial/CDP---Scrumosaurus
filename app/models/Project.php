@@ -9,6 +9,8 @@
 
 class Project extends Eloquent
 {
+    protected $table="projects";
+
     public static function getMyProjects(){
         return Project::where('id', 'NOT LIKE', -1)->get();
     }
