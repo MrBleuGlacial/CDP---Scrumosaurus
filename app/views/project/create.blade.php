@@ -47,7 +47,6 @@
 
     {{ Form::submit('Créer le projet !', array('class' => 'btn btn-primary')) }}
 
-
     {{ Form::close() }}
 
  @stop
