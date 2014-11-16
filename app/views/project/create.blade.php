@@ -9,20 +9,6 @@
 
  @section('content')
           <h1>Création de Projet</h1>
-    <!--
-    <form action='/project/store' method="POST" name="formulaireProjet">
-       Nom du projet : <input type="text" name="projectName" class="form-control"/> <br/> <br/>
-       Description du projet : <textarea name="projectDescription" class="form-control"></textarea> <br/> <br/>
-
-            echo'Date de début de projet :';
-            $timetmp = date('d-m-Y');
-            echo'<input type="text" name="projectBirthDay" value=" '.$timetmp.'" class="form-control"/> <br/>';
-            echo'Date de fin de projet :';
-            echo'<input type="text" name="projectEndDay" value=" '.$timetmp.'" class="form-control"/> <br/>';
-
-        <input type="submit" name="Valider" value="Valider">
-    </form>
-    -->
 
     {{ Form::open(array('url' => 'project')) }}
 
@@ -52,6 +38,7 @@
     </div>
 
     {{ Form::submit('Créer le projet !', array('class' => 'btn btn-primary')) }}
+
 
     {{ Form::close() }}
 
