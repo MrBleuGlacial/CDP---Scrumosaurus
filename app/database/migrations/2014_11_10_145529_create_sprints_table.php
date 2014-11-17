@@ -15,7 +15,9 @@ class CreateSprintsTable extends Migration {
         Schema::create('sprints', function($table)
         {
             $table->increments('id');
+            $table->integer('project_id');
             $table->integer('number');
+            $table->integer('duration');
             $table->dateTime('begin');
             $table->dateTime('end');
             $table->timestamps();

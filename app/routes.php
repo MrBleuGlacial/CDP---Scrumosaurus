@@ -20,6 +20,9 @@ Route::resource('project', 'ProjectController');
 /* US */
 Route::resource('project.userstory', 'UserStoryController');
 
+/* Sprint */
+Route::resource('project.sprint', 'SprintController');
+
 /* USERS */
 Route::resource('users', 'UserController');
 

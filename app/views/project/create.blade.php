@@ -1,14 +1,23 @@
  @extends('layouts.master')
 
- @section('sidebar')
-    <ul class="nav nav-sidebar">
-        <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-        <li class="active"><a href="/project">Projets</a></li>
-    </ul>
- @stop
+
+    @section('sidebar')
+          <ul class="nav nav-sidebar">
+                <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+                <li class="active"><a href="{{ URL::to('project') }}">Projets</a></li>
+          </ul>
+    @stop
+
+    @section('breadcrumb')
+        <ol class="breadcrumb">
+            <li><a href="/">Accueil</a></li>
+            <li class="active">Projets</li>
+        </ol>
+    @stop
+
 
  @section('content')
-          <h1>Création de Projet</h1>
+          <h1 class="page-header">Création de Projet</h1>
 
     {{ Form::open(array('url' => 'project')) }}
 

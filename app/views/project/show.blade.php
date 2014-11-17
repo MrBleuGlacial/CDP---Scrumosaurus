@@ -9,7 +9,8 @@
     <ul class="nav nav-sidebar">
       <li class="active"><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li><a href="{{ URL::to('project') }}">Sprints</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Tâches</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
       <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
 @stop
