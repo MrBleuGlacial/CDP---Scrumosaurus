@@ -2,16 +2,26 @@
 
 @section('sidebar')
       <ul class="nav nav-sidebar">
-        <li><a href="/">Accueil</a></li>
-        <li class="active"><a href="/register">S'inscrire</a></li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+         <li><a href="{{ URL::to('project') }}">Projets</a></li>
       </ul>
+
+    <ul class="nav nav-sidebar">
+      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
+      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Tâches</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
+      <li><a href="{{ $project->git }}">Lien GitHub</a></li>
+    </ul>
 @stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/">Projet</a></li>
-      <li class="active">User Story</li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li><a href="{{ URL::to('project') }}">Projets</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
+        <li class="active">Edition d'une User Story</li>
     </ol>
 @stop
 
@@ -19,11 +29,7 @@
     <h1 class="page-header">Edition d'une User Story</h1>
 
     {{ HTML::ul($errors->all()) }}
-    {{ Form::model($userstory, array('route' => array('project/'.$project->id.'/userstory/'.$userstory->id, $userstory->id), 'method' => 'PUT')) }}
-        <div class="form-group">
-            {{ Form::label('name', 'Nom') }}
-            {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
-        </div>
+    {{ Form::model($userstory, array('route' => array('project.userstory.update', $project->id ,$userstory->id), 'method' => 'PUT')) }}
 
         <div class="form-group">
             {{ Form::label('description', 'Description') }}

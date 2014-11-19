@@ -31,9 +31,9 @@
 <br/>
 <br/>
 
-<?php
-    //echo $projectId;
-?>
+ @if (Session::has('message'))
+ <div class="alert alert-info">{{ Session::get('message') }}</div>
+ @endif
 
 <table class="table table-striped table-bordered">
  <thead>
@@ -46,12 +46,13 @@
      </tr>
  </thead>
  <tbody>
+ <?php $cpt = 1; ?>
  @foreach($userstories as $key => $value)
      <tr>
-         <td>{{ $value->id }}</td>
+         <td>US{{ $cpt }}</td>
          <td>{{ $value->description }}</td>
-         <td>{{ $value->priority }}</td>
-         <td>{{ $value->difficulty }}</td>
+         <td>{{ UserStory::transcriptPriorityOrDifficulty($value->priority) }}</td>
+         <td>{{ UserStory::transcriptPriorityOrDifficulty($value->difficulty) }}</td>
          <td style="width:180px">
             <a href="{{ URL::to('project/'.$project->id.'/userstory/'.$value->id . '/edit') }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier</a>
             {{ Form::open(array('url' => 'project/'.$project->id.'/userstory/' . $value->id, 'class' => 'pull-right')) }}
@@ -60,6 +61,7 @@
             {{ Form::close() }}
          </td>
      </tr>
+     <?php $cpt++; ?>
  @endforeach
  </tbody>
 </table>

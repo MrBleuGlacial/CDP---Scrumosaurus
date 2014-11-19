@@ -33,11 +33,6 @@
     {{ Form::open(array('url' => 'project/'.$project->id.'/userstory')) }}
 
         <div class="form-group">
-            {{ Form::label('name', 'Nom') }}
-            {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
-        </div>
-
-        <div class="form-group">
             {{ Form::label('description', 'Description') }}
             {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
         </div>

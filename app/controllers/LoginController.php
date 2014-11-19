@@ -40,7 +40,7 @@ class LoginController extends \BaseController {
             if (Auth::attempt($user)) {
                 // redirect
                 Session::flash('message', 'Vous êtes bien connecté.');
-                return Redirect::to('login');
+                return Redirect::to('project');
             }
 
             Session::flash('messageError', 'Connexion échoué. Mauvais identifiants?');

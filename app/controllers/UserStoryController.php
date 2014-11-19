@@ -46,7 +46,7 @@ class UserStoryController extends \BaseController {
 	public function store($idProject)
 	{
         $rules = array(
-            'name'       => 'required',
+            'description'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -55,7 +55,7 @@ class UserStoryController extends \BaseController {
                 ->withErrors($validator);
         } else {
             $userstory = new UserStory();
-            $userstory->name = Input::get('name');
+            $userstory->name = "";
             $userstory->project_id = $idProject;
             $userstory->description = Input::get('description');
             $userstory->priority = Input::get('priority');
@@ -63,7 +63,7 @@ class UserStoryController extends \BaseController {
             $userstory->save();
 
             Session::flash('message', 'UserStory créée avec succés!');
-            return Redirect::to('project/' . $idProject);
+            return Redirect::to('project/' . $idProject . '/userstory');
         }
 	}
 
@@ -109,10 +109,10 @@ class UserStoryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($projectId, $idUserStory)
 	{
-        $userstory = UserStory::find($id);
-        $userstory->name = Input::get('name');
+        $userstory = UserStory::find($idUserStory);
+        $userstory->name = "";
         $userstory->description = Input::get('description');
         $userstory->priority = Input::get('priority');
         $userstory->difficulty = Input::get('difficulty');
@@ -120,7 +120,7 @@ class UserStoryController extends \BaseController {
 
         // redirect
         Session::flash('message', 'UserStory mis à jours avec succés !');
-        return Redirect::to('userstory');
+        return Redirect::to('project/' . $projectId . '/userstory');
 	}
 
 	/**
@@ -129,14 +129,14 @@ class UserStoryController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($projectId, $idUserStory)
+    {
         // delete
-        $userstory = UserStory::find($id);
+        $userstory = UserStory::find($idUserStory);
         $userstory->delete();
 
         // redirect
         Session::flash('message', 'UserStory supprimée avec succés !');
-        return Redirect::to('userstory');
+        return Redirect::to('project/' . $projectId . '/userstory');
 	}
 }
