@@ -33,10 +33,10 @@
             <tbody>
             @foreach($project as $key => $value)
                 <tr>
-                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:30px;cursor:pointer;">{{ $value->name }}</a></td>
-                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:30px;cursor:pointer;">{{ $value->description }}</a></td>
-                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:30px;cursor:pointer;">{{ $value->start }}</a></td>
-                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:30px;cursor:pointer;">{{ $value->end }}</a></td>
+                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->name }}</a></td>
+                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->description }}</a></td>
+                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->start }}</a></td>
+                    <td><a href="{{ URL::to('/project/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->end }}</a></td>
 
                     <td style="width:180px">
                         <a class="btn btn-sm btn-info" href="{{ URL::to('project/' . $value->id . '/edit') }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier</a>

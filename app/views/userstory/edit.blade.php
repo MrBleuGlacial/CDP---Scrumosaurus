@@ -9,7 +9,7 @@
     <ul class="nav nav-sidebar">
       <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li class="active"><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Tâches</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
       <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
@@ -28,7 +28,9 @@
 @section('content')
     <h1 class="page-header">Edition d'une User Story</h1>
 
-    {{ HTML::ul($errors->all()) }}
+    @if(!$errors->first() == "")
+     <div class="alert alert-danger">{{ HTML::ul($errors->all()) }}</div>
+    @endif
     {{ Form::model($userstory, array('route' => array('project.userstory.update', $project->id ,$userstory->id), 'method' => 'PUT')) }}
 
         <div class="form-group">

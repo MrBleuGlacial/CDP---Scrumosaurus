@@ -15,6 +15,18 @@
 
 @section('content')
          <h1 class="page-header">Bienvenue sur Scrumosaurus</h1>
-         <p> Bonjour !</p>
-         <p> Si vous n'avez pas encore de projet créez en un dans la colonne de gauche ...</p>
+
+         <div class="jumbotron">
+            <div class="container">
+                <h1>Gérez vos projets en toute simplicité !</h1>
+                <p> Bonjour ! <br/>
+                    Créez vous un compte dans la barre principale en haut !<br/>
+                    Et si vous n'avez pas encore de projet, créez en un dans la colonne de gauche ...</p>
+            </div>
+         </div>
+
+         <div align="center">
+            <p><b>Tyrannosaurus rex approves this tool !</b></p>
+            <img src="assets/img/trex.png" alt="trex"/>
+         </div>
 @stop

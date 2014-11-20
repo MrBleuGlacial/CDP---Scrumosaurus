@@ -1,18 +1,27 @@
 @extends('layouts.master')
 
 @section('sidebar')
+      <ul class="nav nav-sidebar">
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+         <li><a href="{{ URL::to('project') }}">Projets</a></li>
+      </ul>
+
     <ul class="nav nav-sidebar">
-        <li><a href="/home">Accueil</a></li>
-        <li class="active"><a href="/task">Tâches</a></li>
+      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
+      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
+      <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
 @stop
 
-
 @section('breadcrumb')
     <ol class="breadcrumb">
-      <li><a href="/home">Accueil</a></li>
-      <li><a href="/project">Projet</a></li>
-      <li class="active">Edition</li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li><a href="{{ URL::to('project') }}">Projets</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
+        <li class="active">Edition de Tâches</li>
     </ol>
 @stop
 
@@ -21,7 +30,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::model($task, array('route' => array('task.update', $task->id), 'method' => 'PUT')) }}
+    {{ Form::model($task, array('route' => array('project.task.update', $project->id ,$task->id), 'method' => 'PUT')) }}
 
     <div class="form-group">
                 {{ Form::label('description', 'Description') }}
@@ -29,8 +38,8 @@
     </div>
 
     <div class="form-group">
-                {{ Form::label('difficulty', 'Difficulté') }}
-                {{ Form::text('difficulty', Input::old('difficulty'), array('class' => 'form-control')) }}
+        {{ Form::label('difficulty', 'Difficulté') }}
+        {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">

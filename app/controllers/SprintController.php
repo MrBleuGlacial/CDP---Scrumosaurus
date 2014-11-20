@@ -44,6 +44,7 @@ class SprintController extends \BaseController {
 	{
         $rules = array(
             'number'       => 'required',
+            'duration'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -71,9 +72,14 @@ class SprintController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($idProject, $idSprint)
 	{
-		//
+        $project = Project::find($idProject);
+        $sprint = Sprint::find($idSprint);
+        return View::make('sprint.show')
+            ->with(Array(
+                'sprint'=> $sprint,
+                'project' => $project));
 	}
 
 
@@ -83,9 +89,12 @@ class SprintController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($idProject, $idSprint)
 	{
-		//
+        $project = Project::find($idProject);
+        $sprint = Sprint::find($idSprint);
+        return View::make('sprint.edit')
+            ->with(array('sprint' => $sprint, 'project' => $project ));
 	}
 
 
@@ -95,9 +104,31 @@ class SprintController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($idProject, $idSprint)
 	{
-		//
+        $rules = array(
+            'number'    => 'required',
+            'duration'  => 'required',
+            'begin'     => 'required',
+            'end'       => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('project/'.$idProject.'/sprint/'.$idSprint.'/edit')
+                ->withErrors($validator);
+        } else {
+            $sprint = Sprint::find($idSprint);
+            $sprint->number = Input::get('number');
+            $sprint->project_id = $idProject;
+            $sprint->duration = Input::get('duration');
+            $sprint->begin = Input::get('begin');
+            $sprint->end = Input::get('end');
+            $sprint->save();
+
+            Session::flash('message', 'Sprint mis à jour avec succès!');
+            return Redirect::to('project/' . $idProject. '/sprint');
+        }
 	}
 
 
@@ -107,9 +138,15 @@ class SprintController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($idProject, $idSprint)
 	{
-		//
+            // delete
+            $sprint = Sprint::find($idSprint);
+            $sprint->delete();
+
+            // redirect
+            Session::flash('message', 'Sprint supprimé avec succés !');
+            return Redirect::to('project/' . $idProject . '/sprint');
 	}
 
 

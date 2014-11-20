@@ -7,12 +7,13 @@ class TaskController extends BaseController {
      *
      * @return Response
      */
-    public function index()
+    public function index($projectId)
     {
+        $project = Project::find($projectId);
         $tasks = Task::all();
 
         return View::make('task.index')
-            ->with('task', $tasks);
+            ->with(array('task' => $tasks, 'project' => $project));
     }
 
 
@@ -21,9 +22,11 @@ class TaskController extends BaseController {
      *
      * @return Response
      */
-    public function create()
+    public function create($projectId)
     {
-        return View::make('task.create');
+        $project = Project::find($projectId);
+        return View::make('task.create')
+            ->with('project', $project);
     }
 
 
@@ -32,16 +35,19 @@ class TaskController extends BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function store($idProject)
     {
         $task = new Task;
         $task->description = Input::get('description');
         $task->difficulty = Input::get('difficulty');
-        $task->done = Input::get('done');
+        if(Input::get('done') == null)
+            $task->done = 0;
+        else
+            $task->done = 1;
         $task->save();
 
         Session::flash('message', 'Votre tâche a été créée! Bon courage !');
-        return Redirect::to('task');
+        return Redirect::to('project/' . $idProject . '/task');
     }
 
     /**
@@ -67,14 +73,13 @@ class TaskController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($idProject, $idTask)
     {
-        // get the nerd
-        $task = Task::find($id);
+        $project = Project::find($idProject);
+        $task = Task::find($idTask);
 
-        // show the edit form and pass the nerd
         return View::make('task.edit')
-            ->with('task', $task);
+            ->with(array('task' => $task, 'project' => $project));
     }
 
 
@@ -84,16 +89,16 @@ class TaskController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($idProject, $idTask)
     {
-        $task = Task::find($id);
+        $task = Task::find($idTask);
         $task->description = Input::get('description');
         $task->difficulty = Input::get('difficulty');
         $task->done = Input::get('done');
         $task->save();
 
         Session::flash('message', 'Votre tâche a été mise à jour !');
-        return Redirect::to('task');
+        return Redirect::to('project/' . $idProject. '/task');
     }
 
 
@@ -103,15 +108,15 @@ class TaskController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($idProject, $idTask)
     {
         // delete
-        $task = Task::find($id);
+        $task = Task::find($idTask);
         $task->delete();
 
         // redirect
         Session::flash('message', 'Tâche correctement effacée !');
-        return Redirect::to('task');
+        return Redirect::to('project/' . $idProject. '/task');
     }
 
 

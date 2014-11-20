@@ -111,16 +111,26 @@ class UserStoryController extends \BaseController {
 	 */
 	public function update($projectId, $idUserStory)
 	{
-        $userstory = UserStory::find($idUserStory);
-        $userstory->name = "";
-        $userstory->description = Input::get('description');
-        $userstory->priority = Input::get('priority');
-        $userstory->difficulty = Input::get('difficulty');
-        $userstory->save();
+        $rules = array(
+            'description'       => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
-        // redirect
-        Session::flash('message', 'UserStory mis à jours avec succés !');
-        return Redirect::to('project/' . $projectId . '/userstory');
+        if ($validator->fails()) {
+            return Redirect::to('project/'.$projectId.'/userstory/'.$idUserStory.'/edit')
+                ->withErrors($validator);
+        } else {
+            $userstory = UserStory::find($idUserStory);
+            $userstory->name = "";
+            $userstory->description = Input::get('description');
+            $userstory->priority = Input::get('priority');
+            $userstory->difficulty = Input::get('difficulty');
+            $userstory->save();
+
+            // redirect
+            Session::flash('message', 'UserStory mise à jour avec succès !');
+            return Redirect::to('project/' . $projectId . '/userstory');
+        }
 	}
 
 	/**

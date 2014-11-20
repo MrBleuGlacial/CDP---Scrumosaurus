@@ -27,7 +27,7 @@ Route::resource('project.sprint', 'SprintController');
 Route::resource('users', 'UserController');
 
 /* TASKS */
-Route::resource('task','TaskController');
+Route::resource('project.task','TaskController');
 
 /* Login */
 Route::get('login', 'LoginController@index')->before('guest');

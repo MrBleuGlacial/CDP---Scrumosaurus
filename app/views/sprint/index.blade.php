@@ -9,7 +9,7 @@
     <ul class="nav nav-sidebar">
       <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Tâches</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
       <li class="active"><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
       <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
@@ -33,8 +33,9 @@
         <br/>
         <br/>
 
+        <div class="alert alert-info">Pour ajouter des <b>User Story</b> dans un <b>Sprint</b>, cliquez simplement sur le <b>Sprint</b> de votre choix.</div>
         @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
+            <div class="alert alert-success alert-dismissible">  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>{{ Session::get('message') }}</div>
         @endif
 
         <table class="table table-striped table-bordered">
@@ -44,22 +45,25 @@
                     <td>Durée</td>
                     <td>Date de début</td>
                     <td>Date de fin</td>
-                    <td>Actions</td>
+                    <td style="width:180px">Actions</td>
                 </tr>
             </thead>
             <tbody>
             @foreach($sprints as $key => $value)
                 <tr>
-                    <td>Sprint {{ $value->number }}</td>
-                    <td>{{ $value->duration }}</td>
-                    <td>{{ $value->begin }}</td>
-                    <td>{{ $value->end }}</td>
+                    <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">Sprint {{ $value->number }}</a></td>
+                    <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->duration }} jour(s)</a></td>
+                    <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->begin }}</a></td>
+                    <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->end }}</a></td>
 
-                    <td>
-
-                        <a class="btn btn-small btn-info" href="{{ URL::to('project/' . $value->id . '/edit') }}">Modifier</a>
-
+                    <td style="width:180px">
+                        <a class="btn btn-sm btn-info" href="{{ URL::to('project/'.$project->id.'/sprint/'.$value->id . '/edit') }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier</a>
+                        {{ Form::open(array('url' => 'project/'.$project->id.'/sprint/' . $value->id, 'class' => 'pull-right')) }}
+                            {{ Form::hidden('_method', 'DELETE') }}
+                            {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
+                        {{ Form::close() }}
                     </td>
+
                 </tr>
             @endforeach
             </tbody>
