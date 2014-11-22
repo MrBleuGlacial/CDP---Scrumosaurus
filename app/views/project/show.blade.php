@@ -114,7 +114,42 @@
                         </dd>
                     </dl>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div> <!-- WELL -->
+            <div>
+
+            <h2 class="page-header">Contributeurs</h2>
+
+            <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Nom</td>
+                                <td>Identifiant</td>
+                                <td>Rang</td>
+                                <td style="width:60px">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($contributors as $key => $value)
+                            <tr>
+                                <td>{{ $value->name }} {{$value->lastname}}</td>
+                                <td>{{ $value->login }}</td>
+                                <td>{{ User::transcriptPosition($userPositions[$value->id]) }}</td>
+
+                                <td style="width:60px">
+                                    {{ Form::open(array('url' => 'project/' . $value->id, 'class' => 'pull-right')) }}
+                                                        {{ Form::hidden('_method', 'DELETE') }}
+                                                        {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
+                                    {{ Form::close() }}
+                                </td>
+
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+
+
+            </div> <!-- USERS -->
+        </div> <!-- ROW -->
+    </div> <!-- CONTAINER-FLUID -->
 @stop

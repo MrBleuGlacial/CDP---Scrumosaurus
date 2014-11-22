@@ -22,4 +22,9 @@ class Project extends Eloquent
         else
             return false;
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('User', 'workingon', 'project_id', 'user_id', 'position_id');
+    }
 }

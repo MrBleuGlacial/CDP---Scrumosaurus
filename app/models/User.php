@@ -26,4 +26,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->belongsToMany('Project', 'workingon', 'user_id', 'project_id');
     }
 
+    public static function transcriptPosition($position){
+        $transcriptedValue = "";
+
+        switch($position) {
+            case 1:
+                $transcriptedValue = "Product Owner";
+                break;
+            case 2:
+                $transcriptedValue = "Scrum Master";
+                break;
+            case 3:
+                $transcriptedValue = "Développeur";
+                break;
+            default:
+                $transcriptedValue = "Pas de rang";
+        }
+
+        return $transcriptedValue;
+    }
+
 }

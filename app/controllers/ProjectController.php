@@ -67,14 +67,29 @@ class ProjectController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $userstories = UserStory::where('project_id', 'LIKE', $id)->get();
+        //$userstories = UserStory::where('project_id', 'LIKE', $id)->get();
 
         $project = Project::find($id);
+
+        $contributors = $project->users;
+        $workingon = DB::table('workingon')->where('project_id', $id)->get();
+
+
+
+        $userPositions = array();
+
+        foreach($workingon as $key => $value){
+          $userPositions[$value->user_id] = $value->position_id;
+        }
+
+
+
         return View::make('project.show')
             ->with(Array(
                 'project' => $project,
                 'idProject' => $id,
-                'userstories'=> $userstories));
+                'contributors' => $contributors,
+                'userPositions' => $userPositions));
 	}
 
 	/**
@@ -85,10 +100,8 @@ class ProjectController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        // get the nerd
         $project = Project::find($id);
 
-        // show the edit form and pass the nerd
         return View::make('project.edit')
             ->with('project', $project);
 	}
