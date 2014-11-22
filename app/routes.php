@@ -17,6 +17,9 @@ Route::get('/', array('as' => 'home','uses' => 'HomeController@showWelcome'));
 /* PROJECTS */
 Route::resource('project', 'ProjectController');
 
+/* USERS IN PROJECTS */
+Route::post('project/{id}/add', 'ProjectController@addUser');
+
 /* US */
 Route::resource('project.userstory', 'UserStoryController');
 

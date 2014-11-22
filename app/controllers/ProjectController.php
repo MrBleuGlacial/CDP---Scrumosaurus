@@ -53,7 +53,7 @@ class ProjectController extends BaseController {
         $user->projects()->attach($project->id);
         DB::table('workingon')
             ->where(array('project_id' => $project->id, 'user_id' => Auth::user()->id))
-            ->update(array('position_id' => 1));
+            ->update(array('position_id' => 0));
 
         Session::flash('message', 'Votre projet a été créé! Bon courage !');
         return Redirect::to('project');
@@ -148,4 +148,42 @@ class ProjectController extends BaseController {
 	}
 
 
+    public function addUser($idProject){
+        $rules = array(
+            'login' => 'required',
+        );
+
+        $messages = array(
+            'required' => "Le champ :attribute est requis.",
+        );
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
+
+        $userId = 0;
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('/project/'.$idProject)
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        } else {
+            if(sizeof(User::where('login','=', Input::get('login'))->get()) == 0){
+                return Redirect::to('/project/'.$idProject)->withErrors("Cet identifiant utilisateur n'existe pas.");
+            } else {
+                $userId = User::where('login','=',Input::get('login'))->pluck('id');
+            }
+
+            if(sizeof(DB::table('workingon')->where(array('user_id' => $userId, 'project_id' => $idProject, 'position_id' => Input::get('rank')))->get()) > 0){
+                return Redirect::to('/project/'.$idProject)->withErrors("Vous ne pouvez pas ajouter deux fois le même utilisateur");
+            }
+            else {
+                DB::table('workingon')->insert(
+                    array('user_id' => $userId, 'project_id' => $idProject, 'position_id' => Input::get('rank'))
+                );
+
+                // redirect
+                Session::flash('message', 'Ce contributeur a bien été ajouté.');
+                return Redirect::to('/project/'.$idProject);
+            }
+        }
+    }
 }

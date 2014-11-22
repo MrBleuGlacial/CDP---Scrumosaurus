@@ -30,13 +30,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $transcriptedValue = "";
 
         switch($position) {
-            case 1:
+            case 0:
                 $transcriptedValue = "Product Owner";
                 break;
-            case 2:
+            case 1:
                 $transcriptedValue = "Scrum Master";
                 break;
-            case 3:
+            case 2:
                 $transcriptedValue = "Développeur";
                 break;
             default:

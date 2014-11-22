@@ -119,7 +119,32 @@
 
             <h2 class="page-header">Contributeurs</h2>
 
-            <table class="table table-striped table-bordered">
+            @if(!$errors->first() == "")
+             <div class="alert alert-danger">{{ HTML::ul($errors->all()) }}</div>
+            @endif
+
+             @if (Session::has('message'))
+             <div class="alert alert-success">{{ Session::get('message') }}</div>
+             @endif
+
+            <div class="col-md-6">
+                {{ Form::open(array('url' => 'project/' . $project->id . '/add', 'class' => "form-inline")) }}
+                <div class="form-group">
+                    {{ Form::text('login', Input::old('login'), array('class' => 'form-control', 'placeholder' => 'Entrez un identifiant')) }}
+                     {{ Form::select('rank', array('Product Owner', 'Scrum Master', 'Développeur'), Input::old('rank'), array('class' => 'form-control')) }}
+                    {{ Form::submit('Ajouter un contributeur', array('class' => 'btn btn-primary')) }}
+                </div>
+                <div class="form-group">
+                {{ Form::close() }}
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <td>Nom</td>
@@ -136,19 +161,16 @@
                                 <td>{{ User::transcriptPosition($userPositions[$value->id]) }}</td>
 
                                 <td style="width:60px">
-                                    {{ Form::open(array('url' => 'project/' . $value->id, 'class' => 'pull-right')) }}
-                                                        {{ Form::hidden('_method', 'DELETE') }}
-                                                        {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
-                                    {{ Form::close() }}
+                                {{ Form::open(array('url' => 'project/' . $value->id, 'class' => 'pull-right')) }}
+                                        {{ Form::hidden('_method', 'DELETE') }}
+                                        {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
+                                {{ Form::close() }}
                                 </td>
 
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-
-
-
             </div> <!-- USERS -->
         </div> <!-- ROW -->
     </div> <!-- CONTAINER-FLUID -->
