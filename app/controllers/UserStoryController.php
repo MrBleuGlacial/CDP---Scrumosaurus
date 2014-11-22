@@ -14,8 +14,9 @@ class UserStoryController extends \BaseController {
      */
     public function index($projectId)
     {
-        $userstories = UserStory::all();
+        //$userstories = UserStory::all();
         $project = Project::find($projectId);
+        $userstories = DB::table('userstories')->where('project_id', $projectId)->get();
 
         return View::make('userstory.index')
             ->with(array('userstories' => $userstories, 'project' => $project));

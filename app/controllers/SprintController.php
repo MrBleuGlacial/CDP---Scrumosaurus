@@ -15,8 +15,8 @@ class SprintController extends \BaseController {
 	 */
 	public function index($projectId)
 	{
-        $sprints = Sprint::all();
         $project = Project::find($projectId);
+        $sprints = DB::table('sprints')->where('project_id', $projectId)->get();
 
 		return View::Make('sprint.index')->with(array('sprints' => $sprints, 'project' => $project));
 	}

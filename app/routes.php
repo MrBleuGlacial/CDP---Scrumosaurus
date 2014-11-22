@@ -34,5 +34,5 @@ Route::get('login', 'LoginController@index')->before('guest');
 Route::post('login','LoginController@post');
 Route::get('logout', array('as' => 'logout', function () {
     Auth::logout();
-    return Redirect::route('home')->with('flash_notice', 'You are successfully logged out.');
+    return Redirect::route('home')->with('message', 'Vous vous êtes bien déconnecté.');
 }))->before('auth');

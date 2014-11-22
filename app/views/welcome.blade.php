@@ -16,6 +16,11 @@
 @section('content')
          <h1 class="page-header">Bienvenue sur Scrumosaurus</h1>
 
+          @if (Session::has('message'))
+          <div class="alert alert-success">{{ Session::get('message') }}</div>
+          @endif
+
+
          <div class="jumbotron">
             <div class="container">
                 <h1>Gérez vos projets en toute simplicité !</h1>
