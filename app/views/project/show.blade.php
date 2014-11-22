@@ -161,8 +161,7 @@
                                 <td>{{ User::transcriptPosition($userPositions[$value->id]) }}</td>
 
                                 <td style="width:60px">
-                                {{ Form::open(array('url' => 'project/' . $value->id, 'class' => 'pull-right')) }}
-                                        {{ Form::hidden('_method', 'DELETE') }}
+                                {{ Form::open(array('url' => 'project/' . $project->id. '/delete/'. $value->id, 'class' => 'pull-right')) }}
                                         {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
                                 {{ Form::close() }}
                                 </td>

@@ -19,6 +19,7 @@ Route::resource('project', 'ProjectController');
 
 /* USERS IN PROJECTS */
 Route::post('project/{id}/add', 'ProjectController@addUser');
+Route::post('project/{id}/delete/{idUser}', 'ProjectController@deleteUser');
 
 /* US */
 Route::resource('project.userstory', 'UserStoryController');

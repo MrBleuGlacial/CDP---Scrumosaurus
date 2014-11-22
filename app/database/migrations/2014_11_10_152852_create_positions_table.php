@@ -12,13 +12,13 @@ class CreatePositionsTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('positions', function($table)
+        /*Schema::create('positions', function($table)
         {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
 
-        });
+        });*/
 	}
 
 	/**

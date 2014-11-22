@@ -186,4 +186,12 @@ class ProjectController extends BaseController {
             }
         }
     }
+
+    public function deleteUser($idProject, $idUser){
+        DB::table('workingon')->where(array('user_id' => $idUser, 'project_id' => $idProject))->delete();
+
+        // redirect
+        Session::flash('message', 'Contributeur correctement retiré.');
+        return Redirect::to('project/'.$idProject);
+    }
 }
