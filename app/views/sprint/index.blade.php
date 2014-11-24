@@ -33,7 +33,7 @@
         <br/>
         <br/>
 
-        <div class="alert alert-info">Pour ajouter des <b>User Story</b> dans un <b>Sprint</b>, cliquez simplement sur le <b>Sprint</b> de votre choix.</div>
+        <div class="alert alert-info">Pour ajouter des <b>User Story</b> dans un <b>Sprint</b> et avoir plus d'infos telles que le coût ou le kanban, cliquez simplement sur le <b>Sprint</b> de votre choix.</div>
         @if (Session::has('message'))
             <div class="alert alert-success alert-dismissible">  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>{{ Session::get('message') }}</div>
         @endif

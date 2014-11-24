@@ -169,5 +169,14 @@ class SprintController extends \BaseController {
         return Redirect::to('project/' . $idProject. '/sprint/' .$idSprint);
     }
 
+    public function makeKanban($idProject, $idSprint)
+    {
+        $project = Project::find($idProject);
+        $sprint = Sprint::find($idSprint);
+        $contributors = $project->users;
+
+        return View::make('sprint.kanban')
+            ->with(array('sprint' => $sprint, 'project' => $project, 'contributors' => $contributors ));
+    }
 
 }

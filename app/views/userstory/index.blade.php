@@ -41,7 +41,7 @@
          <td>#</td>
          <td>Description</td>
          <td>Priorité</td>
-         <td>Difficulté</td>
+         <td>Coût</td>
          <td style="width:180px">Action</td>
      </tr>
  </thead>

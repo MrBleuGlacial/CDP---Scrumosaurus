@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('difficulty', 'Difficulté') }}
+            {{ Form::label('difficulty', 'Coût') }}
             {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
         </div>
 
