@@ -30,7 +30,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::model($task, array('route' => array('project.task.update', $project->id ,$task->id), 'method' => 'PUT')) }}
+    {{ Form::model($task, array('route' => array('project.userstory.task.update', $project->id ,$userstory->id, $task->id), 'method' => 'PUT')) }}
 
     <div class="form-group">
                 {{ Form::label('description', 'Description') }}
@@ -43,11 +43,18 @@
     </div>
 
     <div class="form-group">
-                {{ Form::label('done', 'Terminée') }}
-                {{ Form::text('done', Input::old('done'), array('class' => 'form-control')) }}
+        {{ Form::label('done', 'Terminée') }}
+        {{ Form::text('done', Input::old('done'), array('class' => 'form-control')) }}
     </div>
 
-
+     <div class="form-group">
+        {{ Form::label('dependances', 'Dépendances') }}
+        <select multiple="multiple" class="form-control" name="dependances[]">
+            @foreach($tasks as $aKey => $task)
+                <option value="{{$task->id}}">{{ $task->description }}</option>
+            @endforeach
+        </select>
+    </div>
 
     {{ Form::submit('Terminer les modifications', array('class' => 'btn btn-primary')) }}
 

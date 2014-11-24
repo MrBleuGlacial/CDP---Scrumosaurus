@@ -1,27 +1,9 @@
 @extends('layouts.master')
 
-@section('sidebar')
-      <ul class="nav nav-sidebar">
-        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
-         <li><a href="{{ URL::to('project') }}">Projets</a></li>
-      </ul>
-
-    <ul class="nav nav-sidebar">
-      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
-      <li><a href="{{ $project->git }}">Lien GitHub</a></li>
-    </ul>
-@stop
-
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
-        <li><a href="{{ URL::to('project') }}">Projets</a></li>
-         <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
-        <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
-        <li class="active">Vue d'une Tâches</li>
+        <li><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+        <li class="active">{{ $task->name }}</li>
     </ol>
 @stop
 

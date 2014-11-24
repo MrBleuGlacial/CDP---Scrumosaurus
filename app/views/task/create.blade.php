@@ -1,35 +1,19 @@
  @extends('layouts.master')
 
-@section('sidebar')
-      <ul class="nav nav-sidebar">
-        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
-         <li><a href="{{ URL::to('project') }}">Projets</a></li>
-      </ul>
-
-    <ul class="nav nav-sidebar">
-      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
-      <li><a href="{{ $project->git }}">Lien GitHub</a></li>
-    </ul>
-@stop
-
-@section('breadcrumb')
-    <ol class="breadcrumb">
-        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
-        <li><a href="{{ URL::to('project') }}">Projets</a></li>
-        <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
-        <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
-        <li class="active">Création de Tâches</li>
-    </ol>
-@stop
+ @section('breadcrumb')
+     <ol class="breadcrumb">
+         <li><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+         <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
+         <li><a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id) }}">{{ $userstory->name }}</a></li>
+         <li class="active">Création d'une tâche</li>
+     </ol>
+ @stop
 
  @section('content')
-          <h1 class="page-header">Création de Tâches</h1>
+    <h1>Création de Tâches</h1>
 
-   {{ Form::open(array('url' => 'project/'.$project->id.'/task')) }}
-
+    {{ HTML::ul($errors->all()) }}
+    {{ Form::open(array('url' => 'project/'.$project->id.'/userstory/'.$userstory->id.'/task')) }}
 
     <div class="form-group">
             {{ Form::label('description', 'Description') }}
@@ -37,13 +21,17 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('difficulty', 'Difficulté') }}
-        {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
+            {{ Form::label('difficulty', 'Difficulté') }}
+            {{ Form::text('difficulty', Input::old('difficulty'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">
-            {{ Form::label('done', 'Terminée?') }}
-            {{Form::checkbox('done', 'value') }}
+        {{ Form::label('dependances', 'Dépendances') }}
+        <select multiple="multiple" class="form-control" name="dependances[]">
+            @foreach($tasks as $aKey => $task)
+                <option value="{{$task->id}}">{{ $task->description }}</option>
+            @endforeach
+        </select>
     </div>
 
     {{ Form::submit('Créer la tâche', array('class' => 'btn btn-primary')) }}
