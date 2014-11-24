@@ -48,10 +48,10 @@
  <tbody>
  @foreach($userstories as $key => $value)
      <tr>
-         <td>US{{ $value->number }}</td>
-         <td>{{ $value->description }}</td>
-         <td>{{ UserStory::transcriptPriorityOrDifficulty($value->priority) }}</td>
-         <td>{{ UserStory::transcriptPriorityOrDifficulty($value->difficulty) }}</td>
+         <td><a href="{{ URL::to('/project/'.$project->id.'/userstory/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">US{{ $value->number }}</a></td>
+         <td><a href="{{ URL::to('/project/'.$project->id.'/userstory/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->description }}</a></td>
+         <td><a href="{{ URL::to('/project/'.$project->id.'/userstory/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ UserStory::transcriptPriorityOrDifficulty($value->priority) }}</a></td>
+         <td><a href="{{ URL::to('/project/'.$project->id.'/userstory/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ UserStory::transcriptPriorityOrDifficulty($value->difficulty) }}</a></td>
          <td style="width:180px">
             <a href="{{ URL::to('project/'.$project->id.'/userstory/'.$value->id . '/edit') }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier</a>
             {{ Form::open(array('url' => 'project/'.$project->id.'/userstory/' . $value->id, 'class' => 'pull-right')) }}

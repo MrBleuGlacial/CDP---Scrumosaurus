@@ -1,39 +1,35 @@
 @extends('layouts.master')
 
+@section('sidebar')
+      <ul class="nav nav-sidebar">
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+         <li><a href="{{ URL::to('project') }}">Projets</a></li>
+      </ul>
+
+    <ul class="nav nav-sidebar">
+      <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
+      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
+      <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
+      <li><a href="{{ $project->git }}">Lien GitHub</a></li>
+    </ul>
+@stop
+
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-        <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
-        <li class="active">{{ $userstory->name }}</li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li><a href="{{ URL::to('project') }}">Projets</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
+        <li class="active">Vue d'une User Story</li>
     </ol>
 @stop
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-5 col-md-4 ">
-                <dl class="dl-horizontal">
-                    <dt>Nom</dt>
-                    <dd>{{ $project->name }}</dd>
-                    <dt>Description</dt>
-                    <dd>{{ $project->description }}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>Commencé il y a</dt>
-                    <dd>
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-sm-5 col-md-5">
-                <p>
+        <h1 class="page-header">User Story {{$userstory->number}}</h1>
 
-                </p>
-            </div>
         </div>
     </div>
-
-    <p>
-
-    </p>
-
 @stop
