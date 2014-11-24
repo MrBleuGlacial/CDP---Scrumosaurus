@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration {
+class CreateDepandonTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,11 @@ class CreateTasksTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('tasks', function($table)
+        Schema::create('depandon', function($table)
         {
             $table->increments('id');
-            $table->text('description');
-            $table->integer('difficulty');
-            $table->boolean('done')->default(false);
-            $table->boolean('in_progress');
-            $table->integer('userstory_id');
+            $table->integer('task_id');;
+            $table->integer('dependance_task_id');
             $table->timestamps();
         });
 	}

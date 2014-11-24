@@ -102,7 +102,6 @@ class UserStoryController extends \BaseController {
         else{
             return Redirect::to("/");
         }
-
 	}
 
 	/**

@@ -34,7 +34,7 @@ Route::get('project/{id}/sprint/{idSprint}/kanban', 'SprintController@makeKanban
 Route::resource('users', 'UserController');
 
 /* TASKS */
-Route::resource('project.task','TaskController');
+Route::resource('project.userstory.task','TaskController');
 
 /* Login */
 Route::get('login', 'LoginController@index')->before('guest');

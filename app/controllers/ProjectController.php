@@ -40,7 +40,6 @@ class ProjectController extends BaseController {
 	 */
 	public function store()
 	{
-
         $project = new Project;
         $project->name = Input::get('name');
         $project->description = Input::get('description');

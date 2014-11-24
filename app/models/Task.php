@@ -35,4 +35,14 @@ class Task extends Eloquent
         else
             echo '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
     }
+
+    public function storeDependance($dependances)
+    {
+        DB::table('depandon')->where('task_id', $this->id)->delete();
+        foreach((array)$dependances as $dependance) {
+            DB::table('depandon')->insert(
+                array('task_id' => $this->id, 'dependance_task_id' => $dependance)
+            );
+        }
+    }
 }
