@@ -46,10 +46,9 @@
      </tr>
  </thead>
  <tbody>
- <?php $cpt = 1; ?>
  @foreach($userstories as $key => $value)
      <tr>
-         <td>US{{ $cpt }}</td>
+         <td>US{{ $value->number }}</td>
          <td>{{ $value->description }}</td>
          <td>{{ UserStory::transcriptPriorityOrDifficulty($value->priority) }}</td>
          <td>{{ UserStory::transcriptPriorityOrDifficulty($value->difficulty) }}</td>
@@ -61,7 +60,6 @@
             {{ Form::close() }}
          </td>
      </tr>
-     <?php $cpt++; ?>
  @endforeach
  </tbody>
 </table>

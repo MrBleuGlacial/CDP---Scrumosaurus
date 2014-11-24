@@ -47,6 +47,7 @@ class UserStoryController extends \BaseController {
 	public function store($idProject)
 	{
         $rules = array(
+            'number'            => 'required',
             'description'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -56,7 +57,7 @@ class UserStoryController extends \BaseController {
                 ->withErrors($validator);
         } else {
             $userstory = new UserStory();
-            $userstory->name = "";
+            $userstory->number = Input::get('number');
             $userstory->project_id = $idProject;
             $userstory->description = Input::get('description');
             $userstory->priority = Input::get('priority');
@@ -113,6 +114,7 @@ class UserStoryController extends \BaseController {
 	public function update($projectId, $idUserStory)
 	{
         $rules = array(
+            'number'            => 'required',
             'description'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -122,7 +124,7 @@ class UserStoryController extends \BaseController {
                 ->withErrors($validator);
         } else {
             $userstory = UserStory::find($idUserStory);
-            $userstory->name = "";
+            $userstory->number = Input::get('number');
             $userstory->description = Input::get('description');
             $userstory->priority = Input::get('priority');
             $userstory->difficulty = Input::get('difficulty');

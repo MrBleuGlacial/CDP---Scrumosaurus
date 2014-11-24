@@ -34,8 +34,7 @@
                         <dd>{{ $project->name }}</dd>
                         <dt>Description</dt>
                         <dd>{{ $project->description }}</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
+
                         <dt>Commencé depuis</dt>
                         <dd>
                             <?php

@@ -76,10 +76,14 @@ class SprintController extends \BaseController {
 	{
         $project = Project::find($idProject);
         $sprint = Sprint::find($idSprint);
+        $userStoriesAvailable = UserStory::where('project_id', '=', $idProject)->where('sprint_id', '=', 0)->get();
+        $userStoriesOfSprint = UserStory::where('sprint_id', '=', $idSprint)->get();
         return View::make('sprint.show')
             ->with(Array(
                 'sprint'=> $sprint,
-                'project' => $project));
+                'project' => $project,
+                'userStoriesAvailable' => $userStoriesAvailable,
+                'userStoriesOfSprint' => $userStoriesOfSprint));
 	}
 
 
@@ -148,6 +152,22 @@ class SprintController extends \BaseController {
             Session::flash('message', 'Sprint supprimé avec succés !');
             return Redirect::to('project/' . $idProject . '/sprint');
 	}
+
+    public function addUserStory($idProject, $idSprint, $idUS){
+        $userstory = UserStory::find($idUS);
+        $userstory->sprint_id = $idSprint;
+        $userstory->save();
+
+        return Redirect::to('project/' . $idProject. '/sprint/' .$idSprint);
+    }
+
+    public function deleteUserStory($idProject, $idSprint, $idUS){
+        $userstory = UserStory::find($idUS);
+        $userstory->sprint_id = 0;
+        $userstory->save();
+
+        return Redirect::to('project/' . $idProject. '/sprint/' .$idSprint);
+    }
 
 
 }

@@ -29,7 +29,27 @@
     <h1 class="page-header">Sprints</h1>
     <div class="container-fluid">
         <div class="row">
+        <h3 class="page-header">User Stories du Sprint</h3>
+             @if (sizeof($userStoriesOfSprint) == 0)
+             <div class="alert alert-info">Ce Sprint ne contient pas d'User Stories.</div>
+             @endif
 
+            <div class="list-group">
+            @foreach($userStoriesOfSprint as $key => $value)
+                <a href="{{$sprint->id}}/delete/{{$value->id}}" class="list-group-item ">US{{ $value->number }} : {{ $value->description }} <span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
+            @endforeach
+            </div>
+
+        <h3 class="page-header">User Stories disponibles</h3>
+             @if (sizeof($userStoriesOfSprint) == 0)
+             <div class="alert alert-info">Ce Projet ne contient pas d'User Stories. </div>
+             @endif
+
+            <div class="list-group">
+                @foreach($userStoriesAvailable as $key => $value)
+                    <a href="{{$sprint->id}}/add/{{$value->id}}" class="list-group-item">US{{ $value->number }} : {{ $value->description }} <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span></a>
+                @endforeach
+            </div>
         </div>
     </div>
 @stop
