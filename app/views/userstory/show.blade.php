@@ -32,8 +32,6 @@
         </div>
     </div>
 
-    <p>
-
-    </p>
+    @include('test.index', array('$tests'=>$tests))
 
 @stop

@@ -77,10 +77,12 @@ class UserStoryController extends \BaseController {
 	 */
 	public function show($idProject, $idUserStory)
 	{
+        $tests = Test::all();
         $project = Project::find($idProject);
         $userstory = UserStory::find($idUserStory);
         return View::make('userstory.show')
             ->with(Array(
+                'tests'=>$tests,
                 'userstory'=> $userstory,
                 'project' => $project));
 	}

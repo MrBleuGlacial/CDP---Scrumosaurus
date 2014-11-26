@@ -1,6 +1,6 @@
 <?php
 
-class TaskController extends BaseController {
+class TestController extends BaseController {
 
     /**
      * Display a listing of the resource.
@@ -9,13 +9,13 @@ class TaskController extends BaseController {
      */
     public function index($idproject, $iduserstory)
     {
-        $tasks = Task::all();
+        $tests = Test::all();
         $project = Project::find($idproject);
         $userstory = UserStory::find($iduserstory);
 
-        return View::make('task.index')
+        return View::make('test.index')
             ->with(Array(
-                'tasks' => $tasks,
+                'tests' => $tests,
                 'project' => $project,
                 'userstory' => $userstory
             ));
@@ -28,10 +28,12 @@ class TaskController extends BaseController {
      */
     public function create($idproject, $iduserstory)
     {
+        $tests = Task::all();
         $project = Project::find($idproject);
         $userstory = UserStory::find($iduserstory);
         return View::make('test.create')
             ->with(Array(
+                'tasks' => $tests,
                 'project' => $project,
                 'userstory' => $userstory
             ));
@@ -45,23 +47,19 @@ class TaskController extends BaseController {
     public function store($idproject, $iduserstory)
     {
         $rules = array(
-            'description'       => 'required',
+            'description'       => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('project/'.$idproject.'/userstory/'.$iduserstory.'/task/create')
+            return Redirect::to('project/'.$idproject.'/userstory/'.$iduserstory.'/test/create')
                 ->withErrors($validator);
         } else {
-            $task = new Task;
-            $task->description = Input::get('description');
-            $task->difficulty = Input::get('difficulty');
-            $task->userstory_id = $iduserstory;
-            $task->save();
+            $tests = new Test;
+            $tests->description = Input::get('description');
+            $tests->save();
 
-            $task->storeDependance(Input::get('dependances'));
-
-            Session::flash('message', 'Votre tâche a été créée! Bon courage !');
+            Session::flash('message', 'Votre test a été ajouté! Bon courage !');
             return Redirect::to('project/'.$idproject.'/userstory/'.$iduserstory);
         }
     }
@@ -76,11 +74,11 @@ class TaskController extends BaseController {
     {
         $userstories = UserStory::where('task_id', 'LIKE', $id)->get();
 
-        $task = Task::find($id);
-        return View::make('task.show')
+        $test = Test::find($id);
+        return View::make('test.show')
             ->with(Array(
-                'task' => $task,
-                'idTask' => $id));
+                'task' => $test,
+                'idTest' => $id));
     }
 
     /**
@@ -89,19 +87,17 @@ class TaskController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($idProject, $idUserStory, $idTask)
+    public function edit($idProject, $idUserStory, $idTest)
     {
         // get the nerd
-        $task = Task::find($idTask);
-        $tasks = Task::all();
+        $test = Test::find($idTest);
         $project = Project::find($idProject);
         $userStory = UserStory::find($idUserStory);
 
         // show the edit form and pass the nerd
-        return View::make('task.edit')
+        return View::make('test.edit')
             ->with(Array(
-                'task'=> $task,
-                'tasks'=>$tasks,
+                'test'=> $test,
                 'project'=>$project,
                 'userstory'=>$userStory));
     }
@@ -113,18 +109,18 @@ class TaskController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($idProject, $idUserStory, $idTask)
+    public function update($idProject, $idUserStory, $idTest)
     {
-        $task = Task::find($idTask);
-        $task->description = Input::get('description');
-        $task->difficulty = Input::get('difficulty');
-        $task->done = Input::get('done');
-        $task->save();
+        $test = Test::find($idTest);
+        $test->description = Input::get('description');
+        $test->user_id = Auth::user()->id;
+        $test->result = Input::get('result');
+        $test->works = Input::get('works');
+        $test->date = \Carbon\Carbon::now();
+        $test->save();
 
-        $task->storeDependance(Input::get('dependances'));
-
-        Session::flash('message', 'Votre tâche a été mise à jour !');
-        return Redirect::to('project/'.$idProject."/userstory/".$idUserStory.'/task');
+        Session::flash('message', 'Votre test a été mise à jour !');
+        return Redirect::to('project/'.$idProject."/userstory/".$idUserStory);
     }
 
     /**
@@ -133,14 +129,14 @@ class TaskController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($idProject, $idUserStory, $idTest)
     {
         // delete
-        $task = Task::find($id);
+        $task = Test::find($idTest);
         $task->delete();
 
         // redirect
-        Session::flash('message', 'Tâche correctement effacée !');
-        return Redirect::to('task');
+        Session::flash('message', 'Test correctement effacée !');
+        return Redirect::to('project/'.$idProject."/userstory/".$idUserStory);
     }
 }
