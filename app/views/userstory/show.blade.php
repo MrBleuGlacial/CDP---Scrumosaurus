@@ -27,7 +27,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-        <h1 class="page-header">User Story {{$userstory->number}}</h1>
+        <h1 class="page-header">User Story {{$userstory->number}} - "{{$userstory->description}}"</h1>
 
             <a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id.'/task/create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une tâche</a>
                     <br/>

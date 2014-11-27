@@ -13,7 +13,7 @@ class TaskController extends BaseController {
         $project = Project::find($idproject);
         $userstory = UserStory::find($iduserstory);
 
-        return View::make('task.show')
+        return View::make('userstory.show')
             ->with(Array(
                 'tasks' => $tasks,
                 'project' => $project,

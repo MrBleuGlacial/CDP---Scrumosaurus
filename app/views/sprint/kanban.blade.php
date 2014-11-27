@@ -34,16 +34,27 @@
 
         <h3 class="page-header">Kanban du Sprint {{$sprint->number}}</h3>
 
+
+
+
     @foreach($contributors as $key => $value)
+
+        <?php $tasks = DB::select('select * from tasks where user_id = ?', array($value->id));?>
+        <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{$value->name}} {{$value->lastname}} - {{$value->login}}</h3>
+              </div>
+              <div class="panel-body">
         <div class="col-md-4">
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">A faire</h3>
               </div>
               <div class="panel-body">
-                 <div class="col-md-4"><div class="panel panel-default"><div class="panel-body">Tâche 1</div></div></div>
+                 <div class="col-md-4">
+                    @foreach($tasks as $task) @if($task->status == 0) <div class="panel panel-default"><div class="panel-body">{{$task->description}}</div></div> @endif @endforeach
+                 </div>
               </div>
-              <div class="panel-footer">{{$value->name}} {{$value->lastname}} - {{$value->login}}</div>
             </div>
 
         </div>
@@ -54,9 +65,8 @@
                 <h3 class="panel-title">En cours</h3>
               </div>
               <div class="panel-body">
-                <div class="col-md-4"><div class="panel panel-default"><div class="panel-body">Tâche 2</div></div></div>
+                 @foreach($tasks as $task) @if($task->status == 1) <div class="panel panel-default"><div class="panel-body">{{$task->description}}</div></div> @endif @endforeach
               </div>
-              <div class="panel-footer">{{$value->name}} {{$value->lastname}} - {{$value->login}}</div>
             </div>
         </div>
 
@@ -64,15 +74,15 @@
         <div class="col-md-4">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                <h3 class="panel-title">Fait</h3>
+                <h3 class="panel-title">Terminée</h3>
               </div>
               <div class="panel-body">
-                <div class="col-md-4"><div class="panel panel-default"><div class="panel-body">Tâche 3</div></div></div>
-                <div class="col-md-4"><div class="panel panel-default"><div class="panel-body">Tâche 4</div></div></div>
+                 @foreach($tasks as $task) @if($task->status == 2) <div class="panel panel-default"><div class="panel-body">{{$task->description}}</div></div> @endif @endforeach
               </div>
-              <div class="panel-footer">{{$value->name}} {{$value->lastname}} - {{$value->login}}</div>
             </div>
          </div>
+         </div>
+    </div>
      @endforeach
 
 

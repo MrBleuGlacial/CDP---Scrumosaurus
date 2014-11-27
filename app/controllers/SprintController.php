@@ -172,6 +172,12 @@ class SprintController extends \BaseController {
         $project = Project::find($idProject);
         $sprint = Sprint::find($idSprint);
         $contributors = $project->users;
+        $sprintTasks =  DB::select('select tasks.* from tasks join userstories u on tasks.userstory_id = u.id join sprints s on u.sprint_id = s.id where s.id = ? ', array($idSprint));
+        $tasks = array();
+
+        foreach($sprintTasks as $task){
+            $tasks[$task->user_id] = $task;
+        }
 
         return View::make('sprint.kanban')
             ->with(array('sprint' => $sprint, 'project' => $project, 'contributors' => $contributors ));
