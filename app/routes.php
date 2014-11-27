@@ -36,6 +36,10 @@ Route::resource('users', 'UserController');
 /* TASKS */
 Route::resource('project.userstory.task','TaskController');
 
+/* TESTS */
+Route::resource('project.userstory.test','TestController',
+    array('except' => array('index', 'show')));
+
 /* Login */
 Route::get('login', 'LoginController@index')->before('guest');
 Route::post('login','LoginController@post');

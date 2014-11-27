@@ -69,12 +69,11 @@
                                     {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
                                 {{ Form::close() }}
                                 </td>
-
-                            </tr>
-                        @endforeach
+                              </tr>
+                           @endforeach
                         </tbody>
                     </table>
+                </div>
+           </div>
 
-        </div>
-    </div>
 @stop
