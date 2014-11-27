@@ -16,10 +16,10 @@ class CreateTasksTable extends Migration {
         {
             $table->increments('id');
             $table->text('description');
-            $table->integer('difficulty');
-            $table->boolean('done')->default(false);
-            $table->boolean('in_progress');
+            $table->integer('status');
+            $table->integer('dayfinished');
             $table->integer('userstory_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
 	}

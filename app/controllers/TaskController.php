@@ -13,7 +13,7 @@ class TaskController extends BaseController {
         $project = Project::find($idproject);
         $userstory = UserStory::find($iduserstory);
 
-        return View::make('task.index')
+        return View::make('task.show')
             ->with(Array(
                 'tasks' => $tasks,
                 'project' => $project,
@@ -28,14 +28,34 @@ class TaskController extends BaseController {
      */
     public function create($idproject, $iduserstory)
     {
-        $tasks = Task::all();
         $project = Project::find($idproject);
         $userstory = UserStory::find($iduserstory);
+        $tasks =  DB::select('select tasks.* from tasks join userstories u on tasks.userstory_id = u.id join projects p on u.project_id = p.id where p.id = ? ', array($idproject) );
+        $contributors = $project->users;
+        $nameContributors = array();
+        $daysOfSprint = array();
+
+        foreach($contributors as $value){
+            $nameContributors[$value->id] = $value->login . " - " . $value->name . " " . $value->lastname;
+        }
+
+        if($userstory->sprint_id == "0"){
+            $daysOfSprint[0] = "Pas de Sprint rattaché";
+        } else {
+            $daysOfSprint[0] = "Pas terminée";
+            $sprint = Sprint::find($userstory->sprint_id);
+
+            for($i = 1; $i <= $sprint->duration; $i++)
+            $daysOfSprint[$i] = "Jour " . $i;
+        }
+
         return View::make('task.create')
             ->with(Array(
                 'tasks' => $tasks,
                 'project' => $project,
-                'userstory' => $userstory
+                'userstory' => $userstory,
+                'nameContributors' => $nameContributors,
+                'daysOfSprint' => $daysOfSprint,
             ));
     }
 
@@ -57,7 +77,9 @@ class TaskController extends BaseController {
         } else {
             $task = new Task;
             $task->description = Input::get('description');
-            $task->difficulty = Input::get('difficulty');
+            $task->user_id = Input::get('developer');
+            $task->status = Input::get('status');
+            $task->dayfinished = Input::get('dayfinished');
             $task->userstory_id = $iduserstory;
             $task->save();
 
@@ -93,11 +115,27 @@ class TaskController extends BaseController {
      */
     public function edit($idProject, $idUserStory, $idTask)
     {
-        // get the nerd
         $task = Task::find($idTask);
-        $tasks = Task::all();
         $project = Project::find($idProject);
         $userStory = UserStory::find($idUserStory);
+        $tasks =  DB::select('select tasks.* from tasks join userstories u on tasks.userstory_id = u.id join projects p on u.project_id = p.id where p.id = ? ', array($idProject) );
+        $contributors = $project->users;
+        $nameContributors = array();
+        $daysOfSprint = array();
+
+        foreach($contributors as $value){
+            $nameContributors[$value->id] = $value->login . " - " . $value->name . " " . $value->lastname;
+        }
+
+        if($userStory->sprint_id == "0"){
+            $daysOfSprint[0] = "Pas de Sprint rattaché";
+        } else {
+            $daysOfSprint[0] = "Pas terminée";
+            $sprint = Sprint::find($userStory->sprint_id);
+
+            for($i = 1; $i <= $sprint->duration; $i++)
+                $daysOfSprint[$i] = "Jour " . $i;
+        }
 
         // show the edit form and pass the nerd
         return View::make('task.edit')
@@ -105,7 +143,9 @@ class TaskController extends BaseController {
                 'task'=> $task,
                 'tasks'=>$tasks,
                 'project'=>$project,
-                'userstory'=>$userStory));
+                'userstory'=>$userStory,
+                'nameContributors' => $nameContributors,
+                'daysOfSprint' => $daysOfSprint));
     }
 
 
@@ -119,14 +159,15 @@ class TaskController extends BaseController {
     {
         $task = Task::find($idTask);
         $task->description = Input::get('description');
-        $task->difficulty = Input::get('difficulty');
-        $task->done = Input::get('done');
+        $task->user_id = Input::get('developer');
+        $task->status = Input::get('status');
+        $task->dayfinished = Input::get('dayfinished');
         $task->save();
 
         $task->storeDependance(Input::get('dependances'));
 
         Session::flash('message', 'Votre tâche a été mise à jour !');
-        return Redirect::to('project/'.$idProject."/userstory/".$idUserStory.'/task');
+        return Redirect::to('project/'.$idProject."/userstory/".$idUserStory);
     }
 
     /**

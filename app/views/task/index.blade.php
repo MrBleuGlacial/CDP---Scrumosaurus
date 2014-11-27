@@ -32,7 +32,6 @@
                     <td>{{ $value->description }}</td>
                     <td>{{ $value->difficulty }}</td>
                     <td>{{ $value->done }}</td>
-                    <!-- we will also add show, edit, and delete buttons -->
 
                     <td>
                     <a class="btn btn-small btn-info" href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id.'/task/' . $value->id . '/edit') }}">Modifier</a>

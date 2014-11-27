@@ -9,7 +9,6 @@
     <ul class="nav nav-sidebar">
       <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
       <li class="active"><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
       <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
@@ -48,12 +47,7 @@
                 {{ Form::text('begin', Input::old('email'), array('class' => 'form-control')) }}
             </div>
 
-            <div class="form-group">
-                {{ Form::label('end', 'Date de fin') }}
-                {{ Form::text('end', Input::old('end'), array('class' => 'form-control')) }}
-            </div>
-
-            {{ Form::submit('Créer un Sprint !', array('class' => 'btn btn-primary')) }}
+            {{ Form::submit('Editer le Sprint !', array('class' => 'btn btn-primary')) }}
 
         {{ Form::close() }}
 

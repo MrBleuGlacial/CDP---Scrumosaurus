@@ -79,10 +79,21 @@ class UserStoryController extends \BaseController {
 	{
         $project = Project::find($idProject);
         $userstory = UserStory::find($idUserStory);
+        $tasks = Task::where('userstory_id', '=', $idUserStory)->get();
+
+        $contributors = $project->users;
+        $nameContributors = array();
+
+        foreach($contributors as $value){
+            $nameContributors[$value->id] = $value->login . " - " . $value->name . " " . $value->lastname;
+        }
+
         return View::make('userstory.show')
             ->with(Array(
                 'userstory'=> $userstory,
-                'project' => $project));
+                'project' => $project,
+                'tasks' => $tasks,
+                'nameContributors' => $nameContributors));
 	}
 
 	/**

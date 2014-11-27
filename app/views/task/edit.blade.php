@@ -9,7 +9,6 @@
     <ul class="nav nav-sidebar">
       <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li class="active"><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
       <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
@@ -33,21 +32,26 @@
     {{ Form::model($task, array('route' => array('project.userstory.task.update', $project->id ,$userstory->id, $task->id), 'method' => 'PUT')) }}
 
     <div class="form-group">
-                {{ Form::label('description', 'Description') }}
-                {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
+            {{ Form::label('developer', 'Développeur') }}
+             {{ Form::select('developer', $nameContributors, Input::old('developer'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('difficulty', 'Difficulté') }}
-        {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
+            {{ Form::label('description', 'Description') }}
+            {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('done', 'Terminée') }}
-        {{ Form::text('done', Input::old('done'), array('class' => 'form-control')) }}
+            {{ Form::label('status', 'Statut') }}
+            {{ Form::select('status', array('A faire','En cours','Terminée'), Input::old('status'), array('class' => 'form-control')) }}
     </div>
 
-     <div class="form-group">
+    <div class="form-group">
+            {{ Form::label('dayfinished', 'Terminée le') }}
+            {{ Form::select('dayfinished', $daysOfSprint, Input::old('dayfinished'), array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
         {{ Form::label('dependances', 'Dépendances') }}
         <select multiple="multiple" class="form-control" name="dependances[]">
             @foreach($tasks as $aKey => $task)

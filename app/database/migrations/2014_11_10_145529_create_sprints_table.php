@@ -19,7 +19,6 @@ class CreateSprintsTable extends Migration {
             $table->integer('number');
             $table->integer('duration');
             $table->dateTime('begin');
-            $table->dateTime('end');
             $table->timestamps();
 
         });

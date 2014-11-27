@@ -45,6 +45,7 @@ class SprintController extends \BaseController {
         $rules = array(
             'number'       => 'required',
             'duration'       => 'required',
+            'begin'     => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -57,7 +58,6 @@ class SprintController extends \BaseController {
             $sprint->project_id = $projectId;
             $sprint->duration = Input::get('duration');
             $sprint->begin = Input::get('begin');
-            $sprint->end = Input::get('end');
             $sprint->save();
 
             Session::flash('message', 'Sprint créé avec succès!');
@@ -114,7 +114,6 @@ class SprintController extends \BaseController {
             'number'    => 'required',
             'duration'  => 'required',
             'begin'     => 'required',
-            'end'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -127,7 +126,6 @@ class SprintController extends \BaseController {
             $sprint->project_id = $idProject;
             $sprint->duration = Input::get('duration');
             $sprint->begin = Input::get('begin');
-            $sprint->end = Input::get('end');
             $sprint->save();
 
             Session::flash('message', 'Sprint mis à jour avec succès!');

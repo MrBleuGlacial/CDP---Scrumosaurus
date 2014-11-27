@@ -9,7 +9,6 @@
     <ul class="nav nav-sidebar">
       <li><a href="{{ URL::to('/project/'.$project->id) }}">Projet <b>{{$project->name}}</b></a></li>
       <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}">Backlog</a></li>
-      <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
       <li class="active"><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
       <li><a href="{{ $project->git }}">Lien GitHub</a></li>
     </ul>
@@ -44,7 +43,6 @@
                     <td>Numéro du Sprint</td>
                     <td>Durée</td>
                     <td>Date de début</td>
-                    <td>Date de fin</td>
                     <td style="width:180px">Actions</td>
                 </tr>
             </thead>
@@ -54,7 +52,6 @@
                     <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">Sprint {{ $value->number }}</a></td>
                     <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->duration }} jour(s)</a></td>
                     <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->begin }}</a></td>
-                    <td><a href="{{ URL::to('/project/'.$project->id.'/sprint/'.$value->id) }}" style="display:block;width:100%;height:100%;cursor:pointer;">{{ $value->end }}</a></td>
 
                     <td style="width:180px">
                         <a class="btn btn-sm btn-info" href="{{ URL::to('project/'.$project->id.'/sprint/'.$value->id . '/edit') }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Modifier</a>

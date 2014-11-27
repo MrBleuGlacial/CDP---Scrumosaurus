@@ -105,11 +105,5 @@
         </div>
     </div>
 
-    <p>
-        <h1 class="page-header">Backlog</h1>
-        @include('userstory.table', array(
-            'userstories'=> $userstories,
-            'idTask' => $idTask))
-    </p>
 
 @stop
