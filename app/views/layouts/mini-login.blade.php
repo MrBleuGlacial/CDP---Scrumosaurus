@@ -14,6 +14,8 @@
               </div>
               <button type="submit" class="btn btn-primary">Se connecter</button>
          {{ Form::close() }}
+                 <br/>
+                 <div>Pas de compte? <a href="/users/create">Créez en un maintenant !</a></div>
         </div>
      </li>
 </ul>

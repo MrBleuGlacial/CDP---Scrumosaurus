@@ -14,16 +14,14 @@
 @stop
 
 @section('content')
-         <h1 class="page-header">Bienvenue sur Scrumosaurus</h1>
-
           @if (Session::has('message'))
           <div class="alert alert-success">{{ Session::get('message') }}</div>
           @endif
 
-
          <div class="jumbotron">
             <div class="container">
-                <h1>Gérez vos projets en toute simplicité !</h1>
+                <h1>Bienvenue sur Scrumosaurus</h1>
+                <h2>Gérez vos projets en toute simplicité !</h2>
                 <p> Bonjour ! <br/>
                     Créez vous un compte dans la barre principale en haut !<br/>
                     Et si vous n'avez pas encore de projet, créez en un dans la colonne de gauche ...</p>

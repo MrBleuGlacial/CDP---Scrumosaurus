@@ -47,6 +47,9 @@
               <button type="submit" class="btn btn-primary">Se connecter</button>
          {{ Form::close() }}
          @endif
+
+         <br/>
+         <div>Pas de compte? <a href="/users/create">Créez en un maintenant !</a></div>
           </div>
         </div>
       </div>
