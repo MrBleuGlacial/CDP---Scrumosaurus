@@ -2,7 +2,7 @@
 
 @section('sidebar')
     <ul class="nav nav-sidebar">
-        <li><a href="/home">Accueil</a></li>
+        <li><a href="/">Accueil</a></li>
         <li class="active"><a href="/project">Projets</a></li>
     </ul>
 @stop
@@ -10,7 +10,7 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-      <li><a href="/home">Accueil</a></li>
+      <li><a href="/">Accueil</a></li>
       <li><a href="/project">Projet</a></li>
       <li class="active">Edition</li>
     </ol>
@@ -43,6 +43,10 @@
                 {{ Form::text('end', Input::old('projectEndDay'), array('class' => 'form-control')) }}
         </div>
 
+        <div class="form-group">
+                {{ Form::label('git', 'Lien du GitHub') }}
+                {{ Form::text('git', Input::old('projectGit'), array('class' => 'form-control')) }}
+        </div>
 
 
     {{ Form::submit('Terminer les modifications', array('class' => 'btn btn-primary')) }}
