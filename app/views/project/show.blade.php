@@ -152,7 +152,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $cpt = 0; ?>
                         @foreach($contributors as $key => $value)
+                            <?php $cpt++;?>
                             <tr>
                                 <td>{{ $value->name }} {{$value->lastname}}</td>
                                 <td>{{ $value->login }}</td>
@@ -160,6 +162,7 @@
 
                                 <td style="width:60px">
                                 {{ Form::open(array('url' => 'project/' . $project->id. '/delete/'. $value->id, 'class' => 'pull-right')) }}
+                                        {{ Form::hidden('nbContributors', $cpt) }}
                                         {{ Form::submit('Supprimer', array('class' => 'btn btn-sm btn-warning')) }}
                                 {{ Form::close() }}
                                 </td>

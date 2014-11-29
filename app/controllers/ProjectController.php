@@ -187,10 +187,16 @@ class ProjectController extends BaseController {
     }
 
     public function deleteUser($idProject, $idUser){
-        DB::table('workingon')->where(array('user_id' => $idUser, 'project_id' => $idProject))->delete();
+        if(Input::get("nbContributors") == 1){
+            return Redirect::to('/project/'.$idProject)->withErrors("Vous ne pouvez pas supprimer tous les utilisateurs d'un projet. Ajoutez en un nouveau avant de supprimer celui que vous désirez.");
+        }
+        else {
 
-        // redirect
-        Session::flash('message', 'Contributeur correctement retiré.');
-        return Redirect::to('project/'.$idProject);
+            DB::table('workingon')->where(array('user_id' => $idUser, 'project_id' => $idProject))->delete();
+
+            // redirect
+            Session::flash('message', 'Contributeur correctement retiré.');
+            return Redirect::to('project/' . $idProject);
+        }
     }
 }

@@ -3,6 +3,7 @@
 
 class Test extends Eloquent
 {
+    protected $table = 'tests';
     var $testeur;
 
     public function testeur()

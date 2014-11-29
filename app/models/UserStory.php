@@ -31,28 +31,4 @@ class UserStory extends Eloquent {
         }
         return false;
     }
-
-    public static function transcriptPriorityOrDifficulty($value){
-        $transcriptedValue = 0;
-
-        switch($value) {
-            case 0:
-                $transcriptedValue = 1;
-                break;
-            case 1:
-                $transcriptedValue = 2;
-                break;
-            case 2:
-                $transcriptedValue = 3;
-                break;
-            case 3:
-                $transcriptedValue = 5;
-                break;
-            case 4:
-                $transcriptedValue = 8;
-                break;
-        }
-
-        return $transcriptedValue;
-    }
 } 
