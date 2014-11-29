@@ -30,6 +30,7 @@
 <br/>
 <br/>
 
+<div class="alert alert-info">Pour ajouter des <b>Tâches</b> et des <b>Tests</b> dans une <b>UserStory</b> cliquez simplement sur l'<b>User Story</b> de votre choix.</div>
  @if (Session::has('message'))
  <div class="alert alert-success">{{ Session::get('message') }}</div>
  @endif

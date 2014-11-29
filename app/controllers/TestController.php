@@ -9,7 +9,7 @@ class TestController extends BaseController {
      */
     public function index($idproject, $iduserstory)
     {
-        $tests = Test::all();
+        $tests = Test::where('userstory_id', '=', $iduserstory)->get();
         $project = Project::find($idproject);
         $userstory = UserStory::find($iduserstory);
 

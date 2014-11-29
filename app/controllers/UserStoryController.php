@@ -77,7 +77,7 @@ class UserStoryController extends \BaseController {
 	 */
 	public function show($idProject, $idUserStory)
 	{
-        $tests = Test::all();
+        $tests = Test::where('userstory_id', '=', $idUserStory)->get();
         $project = Project::find($idProject);
         $userstory = UserStory::find($idUserStory);
         $tasks = Task::where('userstory_id', '=', $idUserStory)->get();

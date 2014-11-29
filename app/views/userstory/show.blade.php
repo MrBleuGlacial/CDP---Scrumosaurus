@@ -20,14 +20,14 @@
         <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
         <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
-        <li class="active">Vue d'une User Story</li>
+        <li class="active">Vue de l'User Story {{$userstory->id}}</li>
     </ol>
 @stop
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-        <h1 class="page-header">User Story {{$userstory->number}} - "{{$userstory->description}}"</h1>
+        <h2 class="page-header">User Story {{$userstory->number}} - "{{$userstory->description}}"</h2>
 
             <a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id.'/task/create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une tâche</a>
                     <br/>
@@ -73,7 +73,11 @@
                            @endforeach
                         </tbody>
                     </table>
-                </div>
-           </div>
+
+
+
+                    @include('test.index')
+                </div><!-- ROW -->
+    </div><!-- Container-fluid -->
 
 @stop

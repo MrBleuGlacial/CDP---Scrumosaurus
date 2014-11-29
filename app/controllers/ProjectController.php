@@ -158,7 +158,6 @@ class ProjectController extends BaseController {
 
         $validator = Validator::make(Input::all(), $rules, $messages);
 
-        $userId = 0;
         // process the login
         if ($validator->fails()) {
             return Redirect::to('/project/'.$idProject)

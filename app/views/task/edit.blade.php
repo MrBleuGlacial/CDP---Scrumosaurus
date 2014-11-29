@@ -19,7 +19,8 @@
         <li><a href="{{ URL::to('/') }}">Accueil</a></li>
         <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
-        <li><a href="{{ URL::to('project/'.$project->id.'/task') }}">Tâches</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id) }}">Vue de l'User Story {{$userstory->id}}</a></li>
         <li class="active">Edition de Tâches</li>
     </ol>
 @stop
