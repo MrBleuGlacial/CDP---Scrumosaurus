@@ -16,7 +16,7 @@ class CreateUserstoriesTable extends Migration {
         {
             $table->increments('id');
             $table->integer('project_id');
-            $table->integer('sprint_id');
+            $table->integer('sprint_id')->nullable()->default(0);
             $table->integer('number');
             $table->integer('difficulty');
             $table->integer('priority');

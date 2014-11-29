@@ -55,9 +55,10 @@ class TestController extends BaseController {
             return Redirect::to('project/'.$idproject.'/userstory/'.$iduserstory.'/test/create')
                 ->withErrors($validator);
         } else {
-            $tests = new Test;
-            $tests->description = Input::get('description');
-            $tests->save();
+            $test = new Test;
+            $test->description = Input::get('description');
+            $test->userstory_id = $iduserstory;
+            $test->save();
 
             Session::flash('message', 'Votre test a été ajouté! Bon courage !');
             return Redirect::to('project/'.$idproject.'/userstory/'.$iduserstory);
@@ -72,8 +73,6 @@ class TestController extends BaseController {
      */
     public function show($id)
     {
-        $userstories = UserStory::where('task_id', 'LIKE', $id)->get();
-
         $test = Test::find($id);
         return View::make('test.show')
             ->with(Array(
@@ -115,6 +114,7 @@ class TestController extends BaseController {
         $test->description = Input::get('description');
         $test->user_id = Auth::user()->id;
         $test->result = Input::get('result');
+        $test->userstory_id = $idUserStory;
         $test->works = Input::get('works');
         $test->date = \Carbon\Carbon::now();
         $test->save();

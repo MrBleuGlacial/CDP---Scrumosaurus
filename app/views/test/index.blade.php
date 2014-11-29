@@ -15,29 +15,35 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($tests as $key => $value)
+    @if (count($tests)==0)
         <tr>
-            <td>{{ $value->description }}</td>
-            <td>{{ $value->testeur() }}</td>
-            <td>{{ $value->date }}</td>
-            <td>
-                @if ($value->works == 1)
-                     <span class="glyphicon glyphicon glyphicon-thumbs-up"></span>
-                @else
-                    <span class="glyphicon glyphicon-exclamation-sign"></span>
-                @endif
-            </td>
-            <td>{{ $value->result }}  </td>
-
-            <td>
-            <a class="btn btn-small btn-info" href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id.'/test/' . $value->id . '/edit') }}">Modifier</a>
-            {{ Form::open(array('url' => 'project/'.$project->id.'/userstory/'.$userstory->id.'/test/' . $value->id, 'class' => 'pull-right')) }}
-                {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Supprimer', array('class' => 'btn btn-warning')) }}
-            {{ Form::close() }}
-            </td>
-
+            <td>Il n'y a pas encore de test enregistré pour cette UserStory</td>
         </tr>
-    @endforeach
+    @else
+        @foreach($tests as $key => $value)
+            <tr>
+                <td>{{ $value->description }}</td>
+                <td>{{ $value->testeur() }}</td>
+                <td>{{ $value->date }}</td>
+                <td>
+                    @if ($value->works == 1)
+                         <span class="glyphicon glyphicon glyphicon-thumbs-up"></span>
+                    @else
+                        <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    @endif
+                </td>
+                <td>{{ $value->result }}  </td>
+
+                <td>
+                <a class="btn btn-small btn-info" href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id.'/test/' . $value->id . '/edit') }}">Modifier</a>
+                {{ Form::open(array('url' => 'project/'.$project->id.'/userstory/'.$userstory->id.'/test/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('Supprimer', array('class' => 'btn btn-warning')) }}
+                {{ Form::close() }}
+                </td>
+
+            </tr>
+        @endforeach
+    @endif
     </tbody>
 </table>

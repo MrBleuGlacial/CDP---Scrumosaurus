@@ -7,7 +7,6 @@ class Task extends Eloquent
 
     public static function transcriptStatus($value){
         $transcriptedValue = 0;
-
         switch($value) {
             case 0:
                 $transcriptedValue = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span> A faire";
@@ -19,7 +18,6 @@ class Task extends Eloquent
                 $transcriptedValue = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Terminée";
                 break;
         }
-
         return $transcriptedValue;
     }
 

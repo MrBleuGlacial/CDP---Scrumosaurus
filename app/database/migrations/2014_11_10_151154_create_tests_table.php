@@ -19,9 +19,9 @@ class CreateTestsTable extends Migration {
             $table->text('description');
             $table->text('result');
             $table->boolean('works');
-            $table->dateTime('date');
+            $table->integer('userstory_id');
+            $table->dateTime('date')->nullable();
             $table->timestamps();
-
         });
 	}
 
