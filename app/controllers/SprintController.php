@@ -193,4 +193,13 @@ class SprintController extends \BaseController {
         return View::make('sprint.pert')
             ->with(array('sprint' => $sprint, 'project' => $project, 'tasks' => $sprintTasks));
     }
+
+    public function makeBurnDownChart($idProject, $idSprint){
+        $project = Project::find($idProject);
+        $sprint = Sprint::find($idSprint);
+
+
+        return View::make('sprint.burndownchart')
+            ->with(array('sprint' => $sprint, 'project' => $project));
+    }
 }

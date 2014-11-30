@@ -16,6 +16,7 @@
     <ul class="nav nav-sidebar">
       <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/kanban') }}"><b>Kanban</b> Sprint {{$sprint->number}}</a></li>
       <li class="active"><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/pert') }}"><b>Pert</b> Sprint {{$sprint->number}}</a></li>
+      <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/burndownchart') }}"><b>BurnDown Chart</b> Sprint {{$sprint->number}}</a></li>
     </ul>
 @stop
 
@@ -41,6 +42,7 @@
 
         <style type="text/css">
         #mynetwork {
+          margin:auto;
           width: 1000px;
           height: 800px;
           border: 1px solid lightgray;
@@ -92,11 +94,6 @@
                 }
               ?>
 
-              //var t1 = new task(1,[],1,"T1");
-              //var t2 = new task(2,[t1],2,"T2");
-              //var t3 = new task(3,[t1],3,"T3");
-
-              //var listTask = [t1,t2,t3];
               var start = [];
               var end = [];
 

@@ -14,8 +14,9 @@
     </ul>
 
     <ul class="nav nav-sidebar">
-      <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/kanban') }}"><b>Kanban</b> Sprint {{$sprint->number}}</a></li>
+      <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/kanban') }}">Kanban Sprint {{$sprint->number}}</a></li>
       <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/pert') }}"><b>Pert</b> Sprint {{$sprint->number}}</a></li>
+      <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/burndownchart') }}"><b>BurnDown Chart</b> Sprint {{$sprint->number}}</a></li>
     </ul>
 @stop
 
