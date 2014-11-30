@@ -28,7 +28,9 @@
     <h1 class="page-header">Sprints</h1>
     <div class="container-fluid">
         <div class="row">
-        {{ HTML::ul($errors->all()) }}
+          @if(!$errors->first() == "")
+           <div class="alert alert-danger">{{ HTML::ul($errors->all()) }}</div>
+          @endif
 
         {{ Form::model($sprint, array('route' => array('project.sprint.update', $project->id ,$sprint->id), 'method' => 'PUT')) }}
 

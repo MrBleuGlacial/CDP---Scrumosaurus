@@ -28,7 +28,9 @@
     <h1 class="page-header">Sprints</h1>
     <div class="container-fluid">
         <div class="row">
-        {{ HTML::ul($errors->all()) }}
+           @if(!$errors->first() == "")
+            <div class="alert alert-danger">{{ HTML::ul($errors->all()) }}</div>
+           @endif
 
         {{ Form::open(array('url' => 'project/'.$project->id.'/sprint')) }}
 

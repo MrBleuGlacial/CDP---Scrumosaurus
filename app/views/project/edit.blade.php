@@ -19,7 +19,9 @@
 @section('content')
     <h1 class="page-header">Modification de {{ $project->name}}</h1>
 
-    {{ HTML::ul($errors->all()) }}
+  @if(!$errors->first() == "")
+   <div class="alert alert-danger">{{ HTML::ul($errors->all()) }}</div>
+  @endif
 
     {{ Form::model($project, array('route' => array('project.update', $project->id), 'method' => 'PUT')) }}
 

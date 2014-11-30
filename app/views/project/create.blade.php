@@ -19,6 +19,10 @@
  @section('content')
           <h1 class="page-header">Création de Projet</h1>
 
+          @if(!$errors->first() == "")
+           <div class="alert alert-danger">{{ HTML::ul($errors->all()) }}</div>
+          @endif
+
     {{ Form::open(array('url' => 'project')) }}
 
     <div class="form-group">
@@ -42,7 +46,7 @@
     </div>
 
     <div class="form-group">
-            {{ Form::label('git', 'Lien du GitHub') }}
+            {{ Form::label('git', 'Lien du GitHub (non obligatoire)') }}
             {{ Form::text('git', Input::old('projectGit'), array('class' => 'form-control')) }}
     </div>
 

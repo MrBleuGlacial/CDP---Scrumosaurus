@@ -40,22 +40,40 @@ class ProjectController extends BaseController {
 	 */
 	public function store()
 	{
-        $project = new Project;
-        $project->name = Input::get('name');
-        $project->description = Input::get('description');
-        $project->start = Input::get('start');
-        $project->end = Input::get('end');
-        $project->git = Input::get('git');
-        $project->save();
+        $rules = array(
+            'name'         => 'required',
+            'description'  => 'required',
+            'start'        => 'required',
+            'end'          => 'required',
+        );
 
-        $user = User::find(Auth::user()->id);
-        $user->projects()->attach($project->id);
-        DB::table('workingon')
-            ->where(array('project_id' => $project->id, 'user_id' => Auth::user()->id))
-            ->update(array('position_id' => 0));
+        $messages = array(
+            'required' => "Le champ :attribute est requis.",
+        );
 
-        Session::flash('message', 'Votre projet a été créé! Bon courage !');
-        return Redirect::to('project');
+        $validator = Validator::make(Input::all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return Redirect::to('project/create')
+                ->withErrors($validator);
+        } else {
+            $project = new Project;
+            $project->name = Input::get('name');
+            $project->description = Input::get('description');
+            $project->start = Input::get('start');
+            $project->end = Input::get('end');
+            $project->git = Input::get('git');
+            $project->save();
+
+            $user = User::find(Auth::user()->id);
+            $user->projects()->attach($project->id);
+            DB::table('workingon')
+                ->where(array('project_id' => $project->id, 'user_id' => Auth::user()->id))
+                ->update(array('position_id' => 0));
+
+            Session::flash('message', 'Votre projet a été créé ! Bon courage !');
+            return Redirect::to('project');
+        }
 	}
 
 	/**
@@ -66,22 +84,16 @@ class ProjectController extends BaseController {
 	 */
 	public function show($id)
 	{
-        //$userstories = UserStory::where('project_id', 'LIKE', $id)->get();
-
         $project = Project::find($id);
 
         $contributors = $project->users;
         $workingon = DB::table('workingon')->where('project_id', $id)->get();
-
-
 
         $userPositions = array();
 
         foreach($workingon as $key => $value){
           $userPositions[$value->user_id] = $value->position_id;
         }
-
-
 
         return View::make('project.show')
             ->with(Array(
@@ -114,16 +126,34 @@ class ProjectController extends BaseController {
 	 */
 	public function update($id)
 	{
-        $project = Project::find($id);
-        $project->name = Input::get('name');
-        $project->description = Input::get('description');
-        $project->start = Input::get('start');
-        $project->end = Input::get('end');
-        $project->git = Input::get('git');
-        $project->save();
+        $rules = array(
+            'name'         => 'required',
+            'description'  => 'required',
+            'start'        => 'required',
+            'end'          => 'required',
+        );
 
-        Session::flash('message', 'Votre projet a été mis à jour !');
-        return Redirect::to('project');
+        $messages = array(
+            'required' => "Le champ :attribute est requis.",
+        );
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return Redirect::to('project/' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+            $project = Project::find($id);
+            $project->name = Input::get('name');
+            $project->description = Input::get('description');
+            $project->start = Input::get('start');
+            $project->end = Input::get('end');
+            $project->git = Input::get('git');
+            $project->save();
+
+            Session::flash('message', 'Votre projet a été mis à jour !');
+            return Redirect::to('project');
+        }
 	}
 
 
