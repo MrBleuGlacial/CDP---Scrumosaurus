@@ -40,8 +40,8 @@
             <?php $cout = 0 ?>
             <div class="list-group">
             @foreach($userStoriesOfSprint as $key => $value)
-                <?php $cout += UserStory::transcriptPriorityOrDifficulty($value->difficulty) ?>
-                <a href="{{$sprint->id}}/delete/{{$value->id}}" class="list-group-item ">US{{ $value->number }} : {{ $value->description }} ---- Coût : {{UserStory::transcriptPriorityOrDifficulty($value->difficulty)}} <span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
+                <?php $cout += $value->difficulty ?>
+                <a href="{{$sprint->id}}/delete/{{$value->id}}" class="list-group-item ">US{{ $value->number }} : {{ $value->description }} ---- Coût : {{$value->difficulty}} <span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
             @endforeach
             </div>
 
@@ -58,7 +58,7 @@
 
             <div class="list-group">
                 @foreach($userStoriesAvailable as $key => $value)
-                    <a href="{{$sprint->id}}/add/{{$value->id}}" class="list-group-item">US{{ $value->number }} : {{ $value->description }} ---- Coût : {{UserStory::transcriptPriorityOrDifficulty($value->difficulty)}} <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span></a>
+                    <a href="{{$sprint->id}}/add/{{$value->id}}" class="list-group-item">US{{ $value->number }} : {{ $value->description }} ---- Coût : {{$value->difficulty}} <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span></a>
                 @endforeach
             </div>
         </div>

@@ -40,14 +40,16 @@
     </div>
 
      <div class="form-group">
-       {{ Form::label('resultat', 'Résultat') }}
+       {{ Form::label('works', 'Résultat') }}
        <p>
-        Cochez la case si le test a validé
+        Cochez la case si le test s'est déroulé correctement
         {{ Form::checkbox('works', 1, Input::old('works')) }}
         </p>
-        <p>Détaillez votre résultat
-        {{ Form::text('result', Input::old('resultat'), array('class' => 'form-control')) }}
-        </p>
+     </div>
+     <div class="form-group">
+        {{ Form::label('result', 'Détaillez votre résultat') }}
+        {{ Form::text('result', Input::old('result'), array('class' => 'form-control')) }}
+
     </div>
 
     {{ Form::submit('Sauvegarder le test', array('class' => 'btn btn-primary')) }}
