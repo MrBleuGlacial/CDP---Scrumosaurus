@@ -51,9 +51,7 @@
                 <h3 class="panel-title">A faire</h3>
               </div>
               <div class="panel-body">
-                 <div class="col-md-4">
-                    @foreach($tasks as $task) @if($task->status == 0) <div class="panel panel-default"><div class="panel-body">{{$task->description}}</div></div> @endif @endforeach
-                 </div>
+                 @foreach($tasks as $task) @if($task->status == 0) <div class="panel panel-default"><div class="panel-body">{{$task->description}}</div></div> @endif @endforeach
               </div>
             </div>
 

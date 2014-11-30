@@ -183,4 +183,14 @@ class SprintController extends \BaseController {
             ->with(array('sprint' => $sprint, 'project' => $project, 'contributors' => $contributors ));
     }
 
+    public function makePert($idProject, $idSprint){
+        $project = Project::find($idProject);
+        $sprint = Sprint::find($idSprint);
+
+        $sprintTasks =  DB::select('select tasks.* from tasks join userstories u on tasks.userstory_id = u.id join sprints s on u.sprint_id = s.id where s.id = ? ', array($idSprint));
+       // $taskDepandon =
+
+        return View::make('sprint.pert')
+            ->with(array('sprint' => $sprint, 'project' => $project, 'tasks' => $sprintTasks));
+    }
 }

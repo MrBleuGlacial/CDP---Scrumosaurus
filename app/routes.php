@@ -29,6 +29,7 @@ Route::resource('project.sprint', 'SprintController');
 Route::get('project/{id}/sprint/{idSprint}/add/{idUS}', 'SprintController@addUserStory');
 Route::get('project/{id}/sprint/{idSprint}/delete/{idUS}', 'SprintController@deleteUserStory');
 Route::get('project/{id}/sprint/{idSprint}/kanban', 'SprintController@makeKanban');
+Route::get('project/{id}/sprint/{idSprint}/pert', 'SprintController@makePert');
 
 /* USERS */
 Route::resource('users', 'UserController');
