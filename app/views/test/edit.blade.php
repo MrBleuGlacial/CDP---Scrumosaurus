@@ -20,13 +20,13 @@
         <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
         <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
-        <li><a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id) }}">Vue de l'User Story {{$userstory->id}}</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id) }}">Vue de l'User Story {{$userstory->number}}</a></li>
         <li class="active">Modifier un test de l'User Story</li>
     </ol>
 @stop
 
 @section('content')
-    <h1>Création de test</h1>
+    <h1 class="page-header">Edition d'un test <small>User Story {{$userstory->number}} : {{$userstory->description}}</small></h1>
      @if(!$errors->first() == "")
          <div class="alert alert-danger">
             {{ HTML::ul($errors->all()) }}

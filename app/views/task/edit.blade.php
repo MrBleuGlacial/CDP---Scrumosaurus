@@ -20,13 +20,13 @@
         <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
         <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
-        <li><a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id) }}">Vue de l'User Story {{$userstory->id}}</a></li>
+        <li><a href="{{ URL::to('project/'.$project->id.'/userstory/'.$userstory->id) }}">Vue de l'User Story {{$userstory->number}}</a></li>
         <li class="active">Edition de Tâches</li>
     </ol>
 @stop
 
 @section('content')
-    <h1 class="page-header">Modification de la tâche {{ $task->id}}</h1>
+    <h1 class="page-header">Modification de la tâche {{ $task->id}} <small>User Story {{$userstory->number}} : {{$userstory->description}}</small></h1>
 
     {{ HTML::ul($errors->all()) }}
 

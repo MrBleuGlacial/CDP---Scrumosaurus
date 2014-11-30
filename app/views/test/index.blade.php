@@ -18,6 +18,11 @@
     @if (count($tests)==0)
         <tr>
             <td>Il n'y a pas encore de tests enregistrés pour cette UserStory</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     @else
         @foreach($tests as $key => $value)

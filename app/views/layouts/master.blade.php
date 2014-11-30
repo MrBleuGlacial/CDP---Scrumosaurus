@@ -46,8 +46,7 @@
 
           @yield('content')
 
-
-
+            <br/>
            <!-- FOOTER -->
            <footer>
              <p class="pull-right"><a href="#">Retour en haut</a></p>

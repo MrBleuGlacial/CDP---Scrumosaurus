@@ -20,7 +20,7 @@
         <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li><a href="{{ URL::to('project/'.$project->id) }}"> {{ $project->name }} </a></li>
         <li><a href="{{ URL::to('project/'.$project->id.'/userstory') }}"> Backlog</a></li>
-        <li class="active">Vue de l'User Story {{$userstory->id}}</li>
+        <li class="active">Vue de l'User Story {{$userstory->number}}</li>
     </ol>
 @stop
 
