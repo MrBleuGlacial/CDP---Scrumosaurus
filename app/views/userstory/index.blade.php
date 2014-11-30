@@ -35,7 +35,7 @@
  <div class="alert alert-success">{{ Session::get('message') }}</div>
  @endif
 
-<table class="table table-striped table-bordered">
+<table class="table table-bordered table-hover">
  <thead>
      <tr>
          <td>#</td>

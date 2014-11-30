@@ -3,7 +3,7 @@
 <br/>
 <br/>
 
-<table class="table table-striped table-bordered">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <td>Description</td>

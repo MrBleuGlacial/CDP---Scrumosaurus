@@ -37,7 +37,7 @@
             <div class="alert alert-success alert-dismissible">  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>{{ Session::get('message') }}</div>
         @endif
 
-        <table class="table table-striped table-bordered">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <td>Numéro du Sprint</td>

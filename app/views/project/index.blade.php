@@ -25,7 +25,7 @@
          @endif
 
 
-        <table class="table table-striped table-bordered">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <td>Nom du projet</td>
