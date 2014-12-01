@@ -34,7 +34,11 @@
 
     <div class="form-group">
             {{ Form::label('developer', 'Développeur') }}
-             {{ Form::select('developer', $nameContributors, Input::old('developer'), array('class' => 'form-control')) }}
+            <select class="form-control" id="developer" name="developer">
+            @foreach($nameContributors as $key => $contrib)
+                <option value="{{$key}}" @if($key == $task->user_id) {{ "selected=selected" }} @endif >{{$contrib}}</option>
+            @endforeach
+            </select>
     </div>
 
     <div class="form-group">
