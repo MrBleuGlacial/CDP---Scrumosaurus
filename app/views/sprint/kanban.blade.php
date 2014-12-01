@@ -16,6 +16,7 @@
     <ul class="nav nav-sidebar">
       <li class="active"><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/kanban') }}">Kanban Sprint {{$sprint->number}}</a></li>
       <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/pert') }}"><b>Pert</b> Sprint {{$sprint->number}}</a></li>
+      <li><a href="{{ URL::to('/project/'.$project->id. '/sprint/'.$sprint->id . '/burndownchart') }}"><b>BurnDown Chart</b> Sprint {{$sprint->number}}</a></li>
     </ul>
 @stop
 
@@ -39,8 +40,9 @@
 
 
     @foreach($contributors as $key => $value)
+        <?php $tasks =  DB::select('select tasks.* from tasks join userstories u on tasks.userstory_id = u.id join sprints s on u.sprint_id = s.id where s.id = ? and tasks.user_id = ? ', array($sprint->id, $value->id)); ?>
 
-        <?php $tasks = DB::select('select * from tasks where user_id = ?', array($value->id));?>
+
         <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">{{$value->name}} {{$value->lastname}} - {{$value->login}}</h3>

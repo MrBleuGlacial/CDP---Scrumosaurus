@@ -39,6 +39,7 @@
         {{ HTML::style('assets/graphics/vis.css') }}
         {{ HTML::script('assets/graphics/vis.js') }}
 
+        <div class="alert alert-info">Si le graphique vous parait étrange, vérifier vos dépendances de tâches. De plus, le graphique sera d'autant plus lisible si vous n'affecter que les dépendances directes ; en effet, si une tâche T3 dépend de T1 et T2, et que T2 dépend déjà de T1, n'affectez que la dépendance T2 à T3.</div>
 
         <style type="text/css">
         #mynetwork {
@@ -196,102 +197,102 @@
                       });
               }
 
-              showListTask(listTask);
+              //showListTask(listTask);
 
 
-              //----- Remplissage du Pert valeur 1 -----//
+                      //----- Remplissage du Pert valeur 1 -----//
 
-   function countValue1(ind){
-	var nextTmp = listTask[ind].nextTasks;
-	if(nextTmp != ""){
-		for(var i in nextTmp){
-			var newValue = nextTmp[i].value + listTask[ind].value1st;
-			if(newValue > nextTmp[i].value){
-				//var nodeTmp = nodes[(nextTmp[i].id )+1];
-				//nodeTmp.label = nodeTmp.label + " - " + newValue + "/";
-				nextTmp[i].value1st = newValue;
+           function countValue1(ind){
+            var nextTmp = listTask[ind].nextTasks;
+            if(nextTmp != ""){
+                for(var i in nextTmp){
+                    var newValue = nextTmp[i].value + listTask[ind].value1st;
+                    if(newValue > nextTmp[i].value){
+                        //var nodeTmp = nodes[(nextTmp[i].id )+1];
+                        //nodeTmp.label = nodeTmp.label + " - " + newValue + "/";
+                        nextTmp[i].value1st = newValue;
 
-				//document.write("newValue : "+ newValue +"</br>");
-			}
-			countValue1((nextTmp[i].id)-1);
-		}
-	}
-	else{
-		if(valueEnd < listTask[ind].value1st)
-			//document.write(listTask[ind].value1st);
-			valueEnd = listTask[ind].value1st;
-		//document.write("liaison nécessaire</br>");
-		}
-	}
+                        //document.write("newValue : "+ newValue +"</br>");
+                    }
+                    countValue1((nextTmp[i].id)-1);
+                }
+            }
+            else{
+                if(valueEnd < listTask[ind].value1st)
+                    //document.write(listTask[ind].value1st);
+                    valueEnd = listTask[ind].value1st;
+                //document.write("liaison nécessaire</br>");
+                }
+            }
 
- 	function finalizeValue1(){
-		nodes[1].label = nodes[1].label + " - " + valueEnd + "/" + valueEnd;
-	}
+            function finalizeValue1(){
+                nodes[1].label = nodes[1].label + " - " + valueEnd + "/" + valueEnd;
+            }
 
-  //Initialisation
-	for(var i in start){
-	var nodeTmp = nodes[(start[i].id)+1];
-	//start[i].value1st = start[i].value;
-	nodeTmp.label = nodeTmp.label + " - " + start[i].value1st + "/";
-	countValue1((start[i].id)-1);
-	}
-	finalizeValue1();
+          //Initialisation
+            for(var i in start){
+            var nodeTmp = nodes[(start[i].id)+1];
+            //start[i].value1st = start[i].value;
+            nodeTmp.label = nodeTmp.label + " - " + start[i].value1st + "/";
+            countValue1((start[i].id)-1);
+            }
+            finalizeValue1();
 
-	for(var i = (start.length); i < listTask.length; i++){
-		var nodeTmp = nodes[(listTask[i].id)+1];
-		nodeTmp.label = nodeTmp.label + " - " + listTask[i].value1st + "/";
-	}
-
-
-  //----- Remplissage du Pert valeur 2 -----//
-
-  for(var key in listTask){
-	listTask[key].value2nd = valueEnd;
- }
-
-  function countValue2(ind){
-	var prvTmp = listTask[ind].dependency;
-	if(prvTmp != ""){
-		for(var i in prvTmp){
-			var newValue = listTask[ind].value2nd - listTask[ind].value;
-			//document.write(listTask[ind].value2nd + "</br>");
-			//document.write(listTask[ind].value + "</br>");
-			//document.write(newValue + "</br>");
-			if(newValue < prvTmp[i].value2nd){
-				//var nodeTmp = nodes[(prvTmp[i].id )+1];
-				//nodeTmp.label = nodeTmp.label + newValue;//
-				prvTmp[i].value2nd = newValue;
-			}
-			countValue2((prvTmp[i].id)-1);
-		}
-	}
-}
-
-  for(var i in end){
-	var nodeTmp = nodes[(end[i].id)+1];
-	nodeTmp.label = nodeTmp.label + valueEnd;
-	countValue2((end[i].id)-1);
-  }
-
-  for(var i in listTask){
-	if(listTask[i].nextTasks != ""){
-		var nodeTmp = nodes[(listTask[i].id)+1];
-		nodeTmp.label = nodeTmp.label + listTask[i].value2nd;
-	}
-  }
-
-   //showListTask(listTask);
+            for(var i = (start.length); i < listTask.length; i++){
+                var nodeTmp = nodes[(listTask[i].id)+1];
+                nodeTmp.label = nodeTmp.label + " - " + listTask[i].value1st + "/";
+            }
 
 
+          //----- Remplissage du Pert valeur 2 -----//
 
-  //----- Création de l'affichage du Pert -----//
-  var container = document.getElementById('mynetwork');
-  var data = {
-    nodes: nodes,
-    edges: edges
-  };
-  var options = {edges:{style:'arrow-center'}};
-  var network = new vis.Network(container, data, options);
+          for(var key in listTask){
+            listTask[key].value2nd = valueEnd;
+         }
+
+          function countValue2(ind){
+            var prvTmp = listTask[ind].dependency;
+            if(prvTmp != ""){
+                for(var i in prvTmp){
+                    var newValue = listTask[ind].value2nd - listTask[ind].value;
+                    //document.write(listTask[ind].value2nd + "</br>");
+                    //document.write(listTask[ind].value + "</br>");
+                    //document.write(newValue + "</br>");
+                    if(newValue < prvTmp[i].value2nd){
+                        //var nodeTmp = nodes[(prvTmp[i].id )+1];
+                        //nodeTmp.label = nodeTmp.label + newValue;//
+                        prvTmp[i].value2nd = newValue;
+                    }
+                    countValue2((prvTmp[i].id)-1);
+                }
+            }
+        }
+
+          for(var i in end){
+            var nodeTmp = nodes[(end[i].id)+1];
+            nodeTmp.label = nodeTmp.label + valueEnd;
+            countValue2((end[i].id)-1);
+          }
+
+          for(var i in listTask){
+            if(listTask[i].nextTasks != ""){
+                var nodeTmp = nodes[(listTask[i].id)+1];
+                nodeTmp.label = nodeTmp.label + listTask[i].value2nd;
+            }
+          }
+
+           //showListTask(listTask);
+
+
+
+          //----- Création de l'affichage du Pert -----//
+          var container = document.getElementById('mynetwork');
+          var data = {
+            nodes: nodes,
+            edges: edges
+          };
+          var options = {edges:{style:'arrow-center'}};
+          var network = new vis.Network(container, data, options);
 
 
 </script>
