@@ -36,108 +36,62 @@
 
         <h3 class="page-header">BurnDown Chart du Sprint {{$sprint->number}}</h3>
 
-        {{ HTML::style('assets/graphics/vis.css') }}
-        {{ HTML::script('assets/graphics/vis.js') }}
-
-          <style type="text/css">
-            body, html {
-              font-family: sans-serif;
-            }
-          </style>
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            <script type="text/javascript">
 
 
-        <div id="visualization"></div>
+        	  google.load("visualization", "1", {packages:["corechart"]});
+              google.setOnLoadCallback(drawChart);
 
-        <script type="text/javascript">
+        	  //-----INIT WITH BDD-----//
+        	  var name = "Burndown Chart";
 
-            //NT: date, valueRl & valueRef doivent être de même taille.
+        	  <?php
+        	  $totalCost = 0;
+        	  foreach($userstories as $key => $value){
+                $totalCost += $value->difficulty;
+        	  }
 
-            //----- INITIALISATION DES 2 COURBES -----//
+        	  ?>
 
-            var names = ['Référence', 'Réel'];
+        	  var valRf = [<?php echo $totalCost; ?>,18,16,10,5,0]; //Valeurs de référence, 1ère valeur correspond au total de début
+        	  var valDay = [3,2,6,5,5]; //Coût effectué pour chaque jour
+        	  //-----------------------//
 
-            var groups = new vis.DataSet();
+        	  var indCost = valRf[0];
+        	  var indDay = 0;
 
-            groups.add({
-                id: 0,
-                content: names[0],
-                options: {
-                    drawPoints: {
-                        style: 'circle' // square, circle
-                    },
-                    shaded: {
-                        orientation: 'bottom' // top, bottom
-                    }
-                }});
+        	  function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Day', 'Référence', 'Réel'],
+                  ['Jour '+indDay, valRf[0], valRf[0] ]
+                ]);
 
-            groups.add({
-                id: 1,
-                content: names[1],
-                options: {
-                    drawPoints: {
-                        style: 'circle' // square, circle
-                    },
-                    shaded: {
-                        orientation: 'bottom' // top, bottom
-                    }
-                }});
+                indDay += 1;
+
+        		for(var i = 1; i < valRf.length; i++){
+        			indCost -= valDay[i-1];
+        			data.addRow(['Jour '+indDay, valRf[i], indCost]);
+        			indDay += 1;
+        		}
+        		//items.push({x: date[key], y: tmp, group: 0});
 
 
-                //----- ENREGISTREMENT DES VALEURS -----//
+                var options = {
+                  title: name,
+        		  curveType: 'function',
+        		  pointSize : 5,
+        		  pointShape : "diamond",
+        		  legend: { position: 'bottom'}
+                };
 
-            //-A REMPLIR AVEC LA BDD-//
-            var date = ['1','2','3','4','5','6'];
-            var valueRef = [50,40,30,20,10,0];
-            var valueRl = [30,50,15,15,15,5];
-            //-----------------------//
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
-            var evolve = 0;
-            var valueMax = 0;
+                chart.draw(data, options);
+              }
+            </script>
 
-            var items = [];
+            <div id="chart_div" style="margin:auto; width: auto; height: 500px;"></div>
 
-            for(var key in valueRef){
-                valueMax += valueRef[key];
-                //document.write(valueMax + "</br>");
-            }
-
-                //----- CREATION DU MODELE BURNDOWNCHART -----//
-
-            function create(){
-            //---Init Référence ---//
-                for(var key in date){
-                    evolve += valueRef[key];
-                    var tmp = valueMax - evolve;
-                    //document.write(tmp + "</br>");
-                    items.push({x: date[key], y: tmp, group: 0});
-                }
-            //--- Init Réelle ---//
-                evolve = 0;
-                for(var key in date){
-                    evolve += valueRl[key];
-                    var tmp = valueMax - evolve;
-                    //document.write(evolve + "</br>");
-                    items.push({x: date[key], y: tmp, group: 1});
-                }
-                document.write("Coût restant : " + (valueMax - evolve));
-            }
-
-            create();
-
-                //----- CREATION DE LA VUE BURNDOWNCHART -----//
-
-          var container = document.getElementById('visualization');
-          var dataset = new vis.DataSet(items);
-
-          var options = {
-            defaultGroup: 'ungrouped',
-            legend: true,
-            start: '2014-06-11',
-            end: '2014-06-16'
-          };
-
-          var graph2d = new vis.Graph2d(container, dataset, groups,options);
-
-        </script>
-<br/>
+        <br/>
 @stop

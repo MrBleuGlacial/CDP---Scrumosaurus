@@ -44,7 +44,7 @@
         <style type="text/css">
         #mynetwork {
           margin:auto;
-          width: 1000px;
+          width: auto;
           height: 800px;
           border: 1px solid lightgray;
         }

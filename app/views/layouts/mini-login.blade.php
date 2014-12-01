@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav navbar-right">
-    <li><a href="/users/create">S'inscrire</a></li>
+    <li><a href="users/create">S'inscrire</a></li>
     <li class="dropdown" id="menuLogin">
        <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Se connecter</a>
        <div class="dropdown-menu" style="padding:17px; width: 300px;">
