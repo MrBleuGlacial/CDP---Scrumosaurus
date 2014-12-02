@@ -31,4 +31,28 @@ class UserStory extends Eloquent {
         }
         return false;
     }
-} 
+
+    public function isDone($day){
+        // PAS DE TACHE DANS L'US
+        $tasks = DB::table('tasks')
+            ->where('userstory_id', '=', $this->id)->get();
+        if(empty($tasks)){
+            return true;
+        }
+
+        // TACHE NON FINI
+        $tasks = DB::table('tasks')
+            ->where('userstory_id', '=', $this->id)
+            ->where('dayfinished', '<=', $day)->get();
+        foreach($tasks as $t){
+            if($t->status != 2)
+                return false;
+        }
+
+        // TACHE PAS ENCORE PASSE
+        $tasks = DB::table('tasks')
+            ->where('userstory_id', '=', $this->id)
+            ->where('dayfinished', '>', $day)->get();
+        return empty($tasks);
+    }
+}

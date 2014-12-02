@@ -197,10 +197,19 @@ class SprintController extends \BaseController {
     public function makeBurnDownChart($idProject, $idSprint){
         $project = Project::find($idProject);
         $sprint = Sprint::find($idSprint);
-        $userstories = UserStory::where('sprint_id', '=', $idSprint)->get();
+        $userstories = UserStory::where('sprint_id', $sprint->id)->get();
 
-
+        $tt = array();
+        for ($i = 0; $i<=$sprint->duration; $i++) {
+            $cpt = 0;
+            foreach ($userstories as $us) {
+                if (!$us->isDone($i)) {
+                    $cpt = $cpt + $us->difficulty;
+                }
+            }
+            array_push($tt, $cpt);
+        }
         return View::make('sprint.burndownchart')
-            ->with(array('sprint' => $sprint, 'project' => $project, 'userstories' => $userstories));
+            ->with(array('sprint' => $sprint, 'project' => $project, 'userstories' => $userstories, 'tt' =>$tt));
     }
 }
