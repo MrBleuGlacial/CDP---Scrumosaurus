@@ -2,14 +2,14 @@
 
 @section('sidebar')
       <ul class="nav nav-sidebar">
-        <li><a href="/">Accueil</a></li>
-        <li class="active"><a href="/login">Se connecter</a></li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li class="active"><a href="{{ URL::to('login') }}">Se connecter</a></li>
       </ul>
 @stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-       <li><a href="/">Accueil</a></li>
+       <li><a href="{{ URL::to('/') }}">Accueil</a></li>
        <li class="active">Se connecter</li>
     </ol>
  @stop
@@ -49,7 +49,7 @@
          @endif
 
          <br/>
-         <div>Pas de compte? <a href="/users/create">Créez en un maintenant !</a></div>
+         <div>Pas de compte? <a href="{{ URL::to('users/create') }}">Créez en un maintenant !</a></div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav navbar-right">
-    <li><a href="users/create">S'inscrire</a></li>
+    <li><a href="{{ URL::to('users/create') }}">S'inscrire</a></li>
     <li class="dropdown" id="menuLogin">
        <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Se connecter</a>
        <div class="dropdown-menu" style="padding:17px; width: 300px;">
@@ -15,7 +15,7 @@
               <button type="submit" class="btn btn-primary">Se connecter</button>
          {{ Form::close() }}
                  <br/>
-                 <div>Pas de compte? <a href="/users/create">Créez en un maintenant !</a></div>
+                 <div>Pas de compte? <a href="{{ URL::to('users/create') }}">Créez en un maintenant !</a></div>
         </div>
      </li>
 </ul>

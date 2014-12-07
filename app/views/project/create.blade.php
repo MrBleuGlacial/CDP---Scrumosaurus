@@ -10,7 +10,7 @@
 
     @section('breadcrumb')
         <ol class="breadcrumb">
-            <li><a href="/">Accueil</a></li>
+            <li><a href="{{ URL::to('/') }}">Accueil</a></li>
             <li class="active">Projets</li>
         </ol>
     @stop

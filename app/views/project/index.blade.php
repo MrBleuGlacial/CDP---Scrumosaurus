@@ -9,14 +9,14 @@
 
     @section('breadcrumb')
         <ol class="breadcrumb">
-            <li><a href="/">Accueil</a></li>
+            <li><a href="{{ URL::to('/') }}">Accueil</a></li>
             <li class="active">Projets</li>
         </ol>
     @stop
 
     @section('content')
         <h1 class="page-header">Projets</h1>
-        <a href="project/create" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Enregistrer un Projet</a>
+        <a href="{{ URL::to('project/create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Enregistrer un Projet</a>
         <br/>
         <br/>
 

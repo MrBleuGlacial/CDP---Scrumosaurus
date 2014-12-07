@@ -2,16 +2,16 @@
 
 @section('sidebar')
     <ul class="nav nav-sidebar">
-        <li><a href="/">Accueil</a></li>
-        <li class="active"><a href="/project">Projets</a></li>
+        <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+        <li class="active"><a href="{{ URL::to('project') }}">Projets</a></li>
     </ul>
 @stop
 
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-      <li><a href="/">Accueil</a></li>
-      <li><a href="/project">Projet</a></li>
+      <li><a href="{{ URL::to('/') }}">Accueil</a></li>
+      <li><a href="{{ URL::to('project') }}">Projet</a></li>
       <li class="active">Edition</li>
     </ol>
 @stop
