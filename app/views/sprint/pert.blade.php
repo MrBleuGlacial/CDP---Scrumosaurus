@@ -45,7 +45,7 @@
         #mynetwork {
           margin:auto;
           width: auto;
-          height: 800px;
+          height: 500px;
           border: 1px solid lightgray;
         }
         </style>
@@ -88,9 +88,9 @@
                         $cptdep++;
                     }
 
-                    echo 'var t'.$value->id.' = new task('. $cpt . ', ['. $depJS .'], 1, "' . $value->description . '");';
+                    echo 'var t'.$value->id.' = new task('. $cpt . ', ['. $depJS .'], 1, "T' . $value->id . '");';
                     echo "\n";
-                    echo 'listTask.push(t'.$cpt.');';
+                    echo 'listTask.push(t'.$value->id.');';
                     echo "\n";
                 }
               ?>
@@ -291,12 +291,17 @@
             nodes: nodes,
             edges: edges
           };
-          var options = {edges:{style:'arrow-center'}};
+          var options = {edges:{style:'arrow-center'}, hierarchicalLayout: {enabled:true, levelSeparation: 100, nodeSpacing: 50, direction: "LR", layout: "direction"}};
           var network = new vis.Network(container, data, options);
 
 
 </script>
-
+        <br/>
+        <ul class="list-group">
+            @foreach ($tasks as $key => $value)
+              <li class="list-group-item"><b>T{{$value->id}}</b> : {{$value->description}}</li>
+            @endforeach
+        </ul>
 
 
 @stop

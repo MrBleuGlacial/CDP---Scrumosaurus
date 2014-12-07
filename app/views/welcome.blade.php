@@ -32,4 +32,8 @@
             <p><b>Tyrannosaurus rex approves this tool !</b></p>
             <img src="assets/img/trex.png" alt="trex"/>
          </div>
+         <blockquote>
+           <p>I approve.</p>
+           <footer>Tyrannosaurus Rex in <cite title="Source Title">Cretaceous</cite></footer>
+         </blockquote>
 @stop

@@ -26,7 +26,7 @@
         <li><a href="{{ URL::to('project') }}">Projets</a></li>
         <li><a href="{{ URL::to('project/'.$project->id) }}">{{ $project->name }}</a></li>
         <li><a href="{{ URL::to('project/'.$project->id.'/sprint') }}">Sprints</a></li>
-        <li class="active">Vue d'un Sprint</li>
+        <li class="active">Vue du Sprint {{$sprint->number}}</li>
     </ol>
 @stop
 
