@@ -43,7 +43,7 @@
 
         <div class="form-group">
             {{ Form::label('priority', 'Priorité') }}
-            {{ Form::select('priority', array('1' => '1', '2' => '2', '3' => '3', '5' => '5','8' => '8'), Input::old('priority'), array('class' => 'form-control')) }}
+            {{ Form::select('priority', array('1' => '1', '2' => '2', '3' => '3', '4' => '4','5' => '5'), Input::old('priority'), array('class' => 'form-control')) }}
         </div>
 
         <div class="form-group">

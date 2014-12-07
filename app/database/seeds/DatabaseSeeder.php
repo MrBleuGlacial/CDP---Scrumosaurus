@@ -12,14 +12,14 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		// $this->call('UserTableSeeder');
-        $this->call('PositionSeeder');
+        $this->call('ScrumSeeder');
 
-        $this->command->info('Positions table seeded!');
+        $this->command->info('Correctly Seeded!');
 	}
 
 }
 
-class PositionSeeder extends Seeder {
+class ScrumSeeder extends Seeder {
 
     public function run()
     {
@@ -56,41 +56,41 @@ class PositionSeeder extends Seeder {
             /** SPRINT 1 */
             array('project_id'=>1, 'sprint_id'=>1, 'number'=>1, 'difficulty'=>8, 'priority'=>2, 'description'=>"En tant que visiteur, je veux pouvoir m'enregistrer sur l'outil Scrum pour gérer des projets."),
             array('project_id'=>1, 'sprint_id'=>1, 'number'=>2, 'difficulty'=>1, 'priority'=>2, 'description'=>"En tant qu'utilisateur, je veux pouvoir me connecter et me déconnecter à mon compte."),
-            array('project_id'=>1, 'sprint_id'=>1, 'number'=>3, 'difficulty'=>3, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir créer un projet et en devenir le product owner."),
+            array('project_id'=>1, 'sprint_id'=>1, 'number'=>3, 'difficulty'=>3, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir créer un projet et en devenir le product owner."),
             array('project_id'=>1, 'sprint_id'=>1, 'number'=>4, 'difficulty'=>1, 'priority'=>3, 'description'=>"En tant qu'utilisateur, je veux pouvoir lister mes projets."),
-            array('project_id'=>1, 'sprint_id'=>1, 'number'=>5, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier ou supprimer un projet."),
+            array('project_id'=>1, 'sprint_id'=>1, 'number'=>5, 'difficulty'=>2, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier ou supprimer un projet."),
             array('project_id'=>1, 'sprint_id'=>1, 'number'=>6, 'difficulty'=>3, 'priority'=>3, 'description'=>"En tant qu'utilisateur, je veux pouvoir créer des User Stories dans le Backlog."),
             /** SPRINT 2 */
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>8, 'difficulty'=>1, 'priority'=>1, 'description'=>"En tant qu'utilisateur, je veux pouvoir afficher le Backlog pour connaitre les User Stories."),
-            array('project_id'=>1, 'sprint_id'=>2, 'number'=>9, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier et supprimer des User Stories dans le Backlog."),
+            array('project_id'=>1, 'sprint_id'=>2, 'number'=>9, 'difficulty'=>2, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier et supprimer des User Stories dans le Backlog."),
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>10, 'difficulty'=>3, 'priority'=>2, 'description'=>"En tant qu'utilisateur, je veux pouvoir ajouter des tâches dans les User Stories."),
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>11, 'difficulty'=>1, 'priority'=>3, 'description'=>"En tant qu'utilisateur, je veux pouvoir lister les tâches d'une User Story."),
-            array('project_id'=>1, 'sprint_id'=>2, 'number'=>12, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier et supprimer des tâches dans les User Stories."),
-            array('project_id'=>1, 'sprint_id'=>2, 'number'=>13, 'difficulty'=>1, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir définir un ordre de priorité dans les tâches d'une User Story."),
+            array('project_id'=>1, 'sprint_id'=>2, 'number'=>12, 'difficulty'=>2, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier et supprimer des tâches dans les User Stories."),
+            array('project_id'=>1, 'sprint_id'=>2, 'number'=>13, 'difficulty'=>1, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir définir un ordre de priorité dans les tâches d'une User Story."),
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>14, 'difficulty'=>1, 'priority'=>1, 'description'=>"En tant qu'utilisateur, je veux pouvoir choisir la difficulté d'une User Story."),
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>15, 'difficulty'=>1, 'priority'=>1, 'description'=>"En tant qu'utilisateur, je veux pouvoir choisir la priorité d'une User Story."),
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>16, 'difficulty'=>3, 'priority'=>2, 'description'=>"En tant qu'utilisateur, je veux pouvoir créer un Sprint et y ajouter des User Stories."),
             array('project_id'=>1, 'sprint_id'=>2, 'number'=>17, 'difficulty'=>1, 'priority'=>3, 'description'=>"En tant qu'utilisateur, je veux pouvoir lister les Sprints et afficher les User Stories présentent dans le Sprint."),
-            array('project_id'=>1, 'sprint_id'=>2, 'number'=>18, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier et supprimer un Sprint."),
-            array('project_id'=>1, 'sprint_id'=>3, 'number'=>24, 'difficulty'=>2, 'priority'=>8, 'description'=>"En tant que product owner, je veux pouvoir ajouter des utilisateurs et leur assigner un rang (Product Owner, Scrum Master, Développeur)."),
-            array('project_id'=>1, 'sprint_id'=>3, 'number'=>25, 'difficulty'=>5, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir accéder au Kanban du Sprint."),
+            array('project_id'=>1, 'sprint_id'=>2, 'number'=>18, 'difficulty'=>2, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier et supprimer un Sprint."),
+            array('project_id'=>1, 'sprint_id'=>3, 'number'=>24, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant que product owner, je veux pouvoir ajouter des utilisateurs et leur assigner un rang (Product Owner, Scrum Master, Développeur)."),
+            array('project_id'=>1, 'sprint_id'=>3, 'number'=>25, 'difficulty'=>5, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir accéder au Kanban du Sprint."),
             /** SPRINT 4 */
-            array('project_id'=>1, 'sprint_id'=>4, 'number'=>26, 'difficulty'=>8, 'priority'=>8, 'description'=>"En tant qu'utilisateur, je veux pouvoir accéder au Pert du Sprint."),
-            array('project_id'=>1, 'sprint_id'=>4, 'number'=>27, 'difficulty'=>2, 'priority'=>8, 'description'=>"En tant qu'utilisateur, je veux pouvoir faire avancer les tâches sur le Kanban en validant une User Story (en dev ou validée)."),
-            array('project_id'=>1, 'sprint_id'=>4, 'number'=>28, 'difficulty'=>8, 'priority'=>8, 'description'=>"En tant qu'utilisateur, je veux pouvoir accéder au BurnDown Chart du Sprint."),
-            array('project_id'=>1, 'sprint_id'=>4, 'number'=>29, 'difficulty'=>3, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir ajouter un test au projet."),
+            array('project_id'=>1, 'sprint_id'=>4, 'number'=>26, 'difficulty'=>8, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir accéder au Pert du Sprint."),
+            array('project_id'=>1, 'sprint_id'=>4, 'number'=>27, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir faire avancer les tâches sur le Kanban en validant une User Story (en dev ou validée)."),
+            array('project_id'=>1, 'sprint_id'=>4, 'number'=>28, 'difficulty'=>8, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir accéder au BurnDown Chart du Sprint."),
+            array('project_id'=>1, 'sprint_id'=>4, 'number'=>29, 'difficulty'=>3, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir ajouter un test au projet."),
             array('project_id'=>1, 'sprint_id'=>4, 'number'=>30, 'difficulty'=>1, 'priority'=>3, 'description'=>"En tant qu'utilisateur, je veux pouvoir voir la liste des tests."),
-            array('project_id'=>1, 'sprint_id'=>4, 'number'=>31, 'difficulty'=>2, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier ou supprimer un test."),
+            array('project_id'=>1, 'sprint_id'=>4, 'number'=>31, 'difficulty'=>2, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir modifier ou supprimer un test."),
             /** SPRINT 5 */
-            array('project_id'=>1, 'sprint_id'=>5, 'number'=>32, 'difficulty'=>8, 'priority'=>8, 'description'=>"En tant qu'utilisateur, je veux pouvoir consulter des informations sur la répartition des tâches dans les sprints via des diagrammes circulaires."),
-            array('project_id'=>1, 'sprint_id'=>5, 'number'=>33, 'difficulty'=>1, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir savoir quand, par qui et si les tests ont fonctionné pour la dernière fois."),
+            array('project_id'=>1, 'sprint_id'=>5, 'number'=>32, 'difficulty'=>8, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir consulter des informations sur la répartition des tâches dans les sprints via des diagrammes circulaires."),
+            array('project_id'=>1, 'sprint_id'=>5, 'number'=>33, 'difficulty'=>1, 'priority'=>4, 'description'=>"En tant qu'utilisateur, je veux pouvoir savoir quand, par qui et si les tests ont fonctionné pour la dernière fois."),
             array('project_id'=>1, 'sprint_id'=>5, 'number'=>34, 'difficulty'=>1, 'priority'=>3, 'description'=>"En tant qu'utilisateur, je veux pouvoir afficher les informations d'un projet (membres, etc).")
         ));
         DB::table('userstories')->insert(array(
             /** US mise de cote pour le moment */
-            array('project_id'=>1, 'number'=>35, 'difficulty'=>8, 'priority'=>8, 'description'=>"En tant qu'utilisateur, je veux pouvoir automatiser le lancement des tests ou accéder à la zone de code correspondante sur le GIT."),
-            array('project_id'=>1, 'number'=>36, 'difficulty'=>5, 'priority'=>5, 'description'=>"En tant que Scrum Master, je veux pouvoir faire le Daily Scrum et l'envoyer à tous les devs."),
-            array('project_id'=>1, 'number'=>37, 'difficulty'=>3, 'priority'=>5, 'description'=>"En tant que Scrum Master, je veux pouvoir planifier une réunion et avertir tout le monde de la date de celle ci."),
+            array('project_id'=>1, 'number'=>35, 'difficulty'=>8, 'priority'=>5, 'description'=>"En tant qu'utilisateur, je veux pouvoir automatiser le lancement des tests ou accéder à la zone de code correspondante sur le GIT."),
+            array('project_id'=>1, 'number'=>36, 'difficulty'=>5, 'priority'=>4, 'description'=>"En tant que Scrum Master, je veux pouvoir faire le Daily Scrum et l'envoyer à tous les devs."),
+            array('project_id'=>1, 'number'=>37, 'difficulty'=>3, 'priority'=>4, 'description'=>"En tant que Scrum Master, je veux pouvoir planifier une réunion et avertir tout le monde de la date de celle ci."),
             array('project_id'=>1, 'number'=>38, 'difficulty'=>2, 'priority'=>1, 'description'=>"En tant que visiteur, je souhaite demander mon mot de passe si je l'ai perdu."),
             array('project_id'=>1, 'number'=>39, 'difficulty'=>2, 'priority'=>1, 'description'=>"En tant qu'utilisateur, je souhaite pouvoir modifier mon profil.")
         ));

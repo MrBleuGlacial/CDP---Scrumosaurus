@@ -44,12 +44,12 @@
 
         <div class="form-group">
             {{ Form::label('priority', 'Priorité') }}
-            {{ Form::select('priority', array('1', '2', '3', '5', '8'), Input::old('priority'), array('class' => 'form-control')) }}
+            {{ Form::select('priority', array('1' => '1', '2' => '2', '3' => '3', '4' => '4','5' => '5'), Input::old('priority'), array('class' => 'form-control')) }}
         </div>
 
         <div class="form-group">
             {{ Form::label('difficulty', 'Coût') }}
-            {{ Form::select('difficulty', array('1', '2', '3', '5', '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
+            {{ Form::select('difficulty', array('1' => '1', '2' => '2', '3' => '3', '5' => '5','8' => '8'), Input::old('difficulty'), array('class' => 'form-control')) }}
         </div>
 
         {{ Form::submit('Enregistrer', array('class' => 'btn btn-primary')) }}
