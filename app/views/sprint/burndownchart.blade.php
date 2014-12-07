@@ -36,61 +36,26 @@
 
         <h3 class="page-header">BurnDown Chart du Sprint {{$sprint->number}}</h3>
 
-            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
             <script type="text/javascript">
+                google.load("visualization", "1", {packages:["corechart"]});
+                google.setOnLoadCallback(drawChart);
 
+                var valRf = <?php echo json_encode($tt );?> ;
 
-        	  google.load("visualization", "1", {packages:["corechart"]});
-              google.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Day', 'Référence', 'Réel'],
+                        ['Jour 0', valRf[0], valRf[0]]
+                        ]);
 
-        	  //-----INIT WITH BDD-----//
-        	  var name = "Burndown Chart";
-
-        	  <?php
-        	  $totalCost = 0;
-        	  foreach($userstories as $key => $value){
-                $totalCost += $value->difficulty;
-        	  }
-
-        	  ?>
-
-        	  var valRf = [<?php echo $totalCost; ?>,18,16,10,5,0]; //Valeurs de référence, 1ère valeur correspond au total de début
-        	  var valDay = [3,2,6,5,5]; //Coût effectué pour chaque jour
-        	  //-----------------------//
-
-        	  var indCost = valRf[0];
-        	  var indDay = 0;
-
-        	  function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                  ['Day', 'Référence', 'Réel'],
-                  ['Jour '+indDay, valRf[0], valRf[0] ]
-                ]);
-
-                indDay += 1;
-
-        		for(var i = 1; i < valRf.length; i++){
-        			indCost -= valDay[i-1];
-        			data.addRow(['Jour '+indDay, valRf[i], indCost]);
-        			indDay += 1;
-        		}
-        		//items.push({x: date[key], y: tmp, group: 0});
-
-
-                var options = {
-                  title: name,
-        		  curveType: 'function',
-        		  pointSize : 5,
-        		  pointShape : "diamond",
-        		  legend: { position: 'bottom'}
-                };
-
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-                chart.draw(data, options);
+                        for(var i = 1; i < valRf.length; i++){
+                            data.addRow(['Jour '+ i, valRf[0]-(valRf[0]/(valRf.length-1)*i), valRf[i]]);
+                        }
+                    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                    chart.draw(data);
               }
             </script>
-
             <div id="chart_div" style="margin:auto; width: auto; height: 500px;"></div>
 
         <br/>
