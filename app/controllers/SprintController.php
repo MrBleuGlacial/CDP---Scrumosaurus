@@ -199,6 +199,33 @@ class SprintController extends \BaseController {
         $sprint = Sprint::find($idSprint);
         $userstories = UserStory::where('sprint_id', '=', $idSprint)->get();
 
+       /* $usFinished = array();
+        $maxDay = 0;
+        $dayFinished = array();
+        foreach($userstories as $key=>$value) {
+            $tasks = Task::where('userstory_id', '=', $value->id)->get();
+            $maxDay = 0;
+            foreach ($tasks as $key2 => $value2) {
+                if ($value2->status != 2) {
+                    $usFinished[$value->id] = false;
+                    $maxDay = 0;
+                    break;
+                } else {
+                    $usFinished[$value->id] = true;
+                    if ($maxDay < $value2->dayfinished) {
+                        $maxDay = $value2->dayfinished;
+                    }
+                }
+            }
+
+            $dayFinished[$value->id] = $maxDay;
+        }
+
+        $finishedByDay = array();
+
+        for($i=0; $i<$sprint->duration; $i++ ){
+            $finishedByDay[$i+1] =
+        }*/
 
         return View::make('sprint.burndownchart')
             ->with(array('sprint' => $sprint, 'project' => $project, 'userstories' => $userstories));

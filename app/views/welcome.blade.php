@@ -2,8 +2,8 @@
 
 @section('sidebar')
       <ul class="nav nav-sidebar">
-            <li class="active"><a href="/">Accueil</a></li>
-            <li><a href="/project">Projets</a></li>
+            <li class="active"><a href="{{URL::to('/')}}">Accueil</a></li>
+            <li><a href="{{URL::to('project')}}">Projets</a></li>
       </ul>
 @stop
 

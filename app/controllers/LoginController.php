@@ -9,7 +9,7 @@
 class LoginController extends \BaseController {
 
     public function index(){
-        return View::make("login/index");
+        return View::make("login.index");
     }
 
     public function post(){
