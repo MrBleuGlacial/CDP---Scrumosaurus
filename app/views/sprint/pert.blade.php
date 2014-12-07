@@ -299,7 +299,7 @@
         <br/>
         <ul class="list-group">
             @foreach ($tasks as $key => $value)
-              <li class="list-group-item"><b>T{{$value->id}}</b> : {{$value->description}} <a class="btn btn-primary btn-xs pull-right" href="{{URL::to('project/'.$project->id.'/userstory/'.$value->userstory_id)}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Voir</a></li>
+              <li class="list-group-item"><b>T{{$value->id}}</b> : {{$value->description}} <a class="btn btn-primary btn-xs pull-right" href="{{URL::to('project/'.$project->id.'/userstory/'.$value->userstory_id)}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Voir les détails</a></li>
             @endforeach
         </ul>
 
