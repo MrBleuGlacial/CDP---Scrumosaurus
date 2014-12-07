@@ -98,7 +98,7 @@ class TaskController extends BaseController {
      */
     public function show($id)
     {
-        $userstories = UserStory::where('task_id', 'LIKE', $id)->get();
+        //$userstories = UserStory::where('task_id', '=', $id)->get();
 
         $task = Task::find($id);
         return View::make('task.show')
