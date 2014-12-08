@@ -34,6 +34,7 @@ class TaskController extends BaseController {
         $contributors = $project->users;
         $nameContributors = array();
         $daysOfSprint = array();
+        $sprint = Sprint::find($userstory->sprint_id);
 
         foreach($contributors as $value){
             $nameContributors[$value->id] = $value->login . " - " . $value->name . " " . $value->lastname;
@@ -56,6 +57,7 @@ class TaskController extends BaseController {
                 'userstory' => $userstory,
                 'nameContributors' => $nameContributors,
                 'daysOfSprint' => $daysOfSprint,
+                'sprint' => $sprint,
             ));
     }
 
@@ -122,6 +124,7 @@ class TaskController extends BaseController {
         $contributors = $project->users;
         $nameContributors = array();
         $daysOfSprint = array();
+        $sprint = Sprint::find($userStory->sprint_id);
 
         foreach($contributors as $value){
             $nameContributors[$value->id] = $value->login . " - " . $value->name . " " . $value->lastname;
@@ -145,7 +148,9 @@ class TaskController extends BaseController {
                 'project'=>$project,
                 'userstory'=>$userStory,
                 'nameContributors' => $nameContributors,
-                'daysOfSprint' => $daysOfSprint));
+                'daysOfSprint' => $daysOfSprint,
+                'sprint' => $sprint,
+            ));
     }
 
 

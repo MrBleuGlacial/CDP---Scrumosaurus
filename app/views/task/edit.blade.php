@@ -28,6 +28,12 @@
 @section('content')
     <h1 class="page-header">Modification de la tâche {{ $task->id}} <small>User Story {{$userstory->number}} : {{$userstory->description}}</small></h1>
 
+   @if(!isset($sprint->number))
+        <div class="alert alert-info"><b>Cette tâche est associée à l'User Story {{$userstory->number}} qui ne fait partie d'aucun Sprint. <a class="btn btn-default btn-xs pull-right" href="{{URL::to('project/'.$project->id.'/sprint')}}">Ajouter des US à un Sprint</a></b></div>
+    @else
+        <div class="alert alert-info"><b>Cette tâche est associée à l'User Story {{$userstory->number}} qui fait partie du Sprint {{$sprint->number}}.</b></div>
+    @endif
+
     {{ HTML::ul($errors->all()) }}
 
     {{ Form::model($task, array('route' => array('project.userstory.task.update', $project->id ,$userstory->id, $task->id), 'method' => 'PUT')) }}

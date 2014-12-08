@@ -43,7 +43,7 @@
             <div class="list-group">
             @foreach($userStoriesOfSprint as $key => $value)
                 <?php $cout += $value->difficulty ?>
-                <a href="{{$sprint->id}}/delete/{{$value->id}}" class="list-group-item ">US{{ $value->number }} : {{ $value->description }} ---- Coût : {{$value->difficulty}} <span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a>
+                <div class="list-group-item">US{{ $value->number }} : {{ $value->description }} ---- <a class="btn btn-default btn-xs" href="{{URL::to('project/'.$project->id.'/userstory/'.$value->id)}}">Voir l'US</a> <a href="{{$sprint->id}}/delete/{{$value->id}}"><span class="glyphicon glyphicon-minus pull-right" aria-hidden="true"></span></a></div>
             @endforeach
             </div>
 
@@ -60,7 +60,7 @@
 
             <div class="list-group">
                 @foreach($userStoriesAvailable as $key => $value)
-                    <a href="{{$sprint->id}}/add/{{$value->id}}" class="list-group-item">US{{ $value->number }} : {{ $value->description }} ---- Coût : {{$value->difficulty}} <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span></a>
+                    <div class="list-group-item">US{{ $value->number }} : {{ $value->description }} ---- <a class="btn btn-default btn-xs" href="{{URL::to('project/'.$project->id.'/userstory/'.$value->id)}}">Voir l'US</a> <a href="{{$sprint->id}}/add/{{$value->id}}"><span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span></a></div>
                 @endforeach
             </div>
         </div>

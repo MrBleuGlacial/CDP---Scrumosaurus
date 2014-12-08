@@ -81,6 +81,7 @@ class UserStoryController extends \BaseController {
         $project = Project::find($idProject);
         $userstory = UserStory::find($idUserStory);
         $tasks = Task::where('userstory_id', '=', $idUserStory)->get();
+        $sprint = Sprint::find($userstory->sprint_id);
 
         $contributors = $project->users;
         $nameContributors = array();
@@ -95,7 +96,8 @@ class UserStoryController extends \BaseController {
                 'userstory'=> $userstory,
                 'project' => $project,
                 'tasks' => $tasks,
-                'nameContributors' => $nameContributors));
+                'nameContributors' => $nameContributors,
+                'sprint' => $sprint));
 	}
 
 	/**

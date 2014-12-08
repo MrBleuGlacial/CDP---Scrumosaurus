@@ -39,7 +39,9 @@
         {{ HTML::style('assets/graphics/vis.css') }}
         {{ HTML::script('assets/graphics/vis.js') }}
 
-        <div class="alert alert-info">Si le graphique vous parait étrange, vérifier vos dépendances de tâches. De plus, le graphique sera d'autant plus lisible si vous n'affecter que les dépendances directes ; en effet, si une tâche T3 dépend de T1 et T2, et que T2 dépend déjà de T1, n'affectez que la dépendance T2 à T3.</div>
+        <div class="alert alert-info">Si le graphique vous parait étrange, vérifier vos dépendances de tâches. De plus, le graphique sera d'autant plus lisible si vous n'affecter que les dépendances directes.
+        <br/> <b>Si aucun graphique ne s'affiche, c'est que vous avez certainement une boucle sur une tâche qui dépend d'elle même.</b>
+        </div>
 
         <style type="text/css">
         #mynetwork {
