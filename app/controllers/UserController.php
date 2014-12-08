@@ -88,7 +88,7 @@ class UserController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		return View::Make('users.show');
 	}
 
 
@@ -100,7 +100,8 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        $user = Auth::user();
+		return View::Make('users.edit')->with(array('user' => $user));
 	}
 
 
@@ -112,7 +113,42 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'name'       => 'required',
+            'lastname'   => 'required',
+            'email'      => 'required|email',
+            'password'   => 'required',
+            'confirmpassword' => 'required',
+            "confirmpassword" => 'same:password'
+        );
+
+        $messages = array(
+            'required' => "Le champ :attribute est requis.",
+            'same' => "Les deux mots de passe doivent être identiques",
+        );
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('users/'.Auth::user()->id.'/edit')
+                ->withErrors($validator)
+                ->withInput(Input::except('password', 'confirmpassword'));
+        } else {
+            // store
+            $user = User::find(Auth::user()->id);
+            $user->email      = Input::get('email');
+            $user->password   = Hash::Make(Input::get('password'));
+            $user->name       = Input::get('name');
+            $user->lastname   = Input::get('lastname');
+            $user->save();
+
+            // redirect
+            Session::flash('message', 'Votre compte a bien été édité.');
+            return Redirect::to('users/'.Auth::user()->id);
+        }
 	}
 
 

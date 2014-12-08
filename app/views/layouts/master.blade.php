@@ -48,6 +48,7 @@
 
             <br/>
            <!-- FOOTER -->
+           <hr>
            <footer>
              <p class="pull-right"><a href="#">Retour en haut</a></p>
              <p>&copy; 2014 Scrumosaurus &middot; Maxime Eychenié &middot; Antoine Laumond &middot; Dimitri Ranc</p>
